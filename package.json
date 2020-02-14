@@ -1,0 +1,16 @@
+{
+  "name": "template_htetshineaung.com_v1",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "deploy": "gh-pages -d build"
+  },
+  "keywords": [],
+  "author": "Htet Shine Aung",
+  "license": "ISC",
+  "homepage": "https://htet-shine.github.io/htetshineaungdotcom_template",
+  "dependencies": {
+    "gh-pages": "^2.2.0"
+  }
+}

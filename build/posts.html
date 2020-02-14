@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+	  <meta charset="utf-8">
+	  <meta http-equiv="x-ua-compatible" content="ie=edge">
+	  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+	  <link rel="stylesheet" href="css/bootstrap.min.css">
+	  <link rel="stylesheet" href="css/all.min.css">
+	  <link rel="stylesheet" href="css/main.css">
+
+	  <script src="js/jquery.min.js"></script>
+	  <script>
+	  	$(window).on('scroll', function () {
+	  		if ($(window).scrollTop()) {
+	  			$('.nav-container').addClass('navbar-sticky');
+	  		} else {
+	  			$('.nav-container').removeClass('navbar-sticky');
+
+	  		}
+	  	});
+	  </script>
+
+	  <title>Htet Shine Aung Blog Template</title>
+</head>
+<body>
+
+	<header>
+	<!-- Navbar start -->
+		<div class="dimmer"></div>
+		<nav class="navbar navbar-expand-md nav-container nav-container2">
+			<div class="container">
+				<div class="logo">
+					<a href="index.html">
+						<h1>HSA Blog</h1>
+					</a>
+				</div>
+				<ul class="navbar-custom">
+					<li class="navitem-custom">
+						<a href="index.html" class="navlink-custom">Home</a>
+					</li>
+					<li class="navitem-custom">
+						<a href="posts.html" class="navlink-custom">Posts</a>
+					</li>
+					<li class="navitem-custom">
+						<a href="skills.html" class="navlink-custom">Skills</a>
+					</li>
+					<li class="navitem-custom">
+						<a href="about.html" class="navlink-custom">About</a>
+					</li>
+					<li class="navitem-custom">
+						<a href="contact.html" class="navlink-custom">Contact</a>
+					</li>
+				</ul>
+				<div class="navbar-toggle">
+					<div class="line1"></div>
+					<div class="line2"></div>
+					<div class="line3"></div>
+				</div>
+			</div>
+		</nav>
+	<!-- Navbar End -->
+	</header>
+
+	<main id="main">
+
+		<!-- Carousel satart -->
+		<section class="carousel-container">
+			<div id="carouselExampleIndicators" class="carousel slide custom" data-ride="carousel" data-interval="false">
+			  <ol class="carousel-indicators">
+			    <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+			    <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+			    <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+			  </ol>
+			  <div class="carousel-inner">
+			    <div class="carousel-item active">
+			      <img src="images/carousel1.jpg" class="img-fluid d-none d-lg-block" alt="slide1">
+			      <img src="images/carousel1_t.jpg" class="img-fluid d-none d-sm-block d-lg-none" alt="slide1">
+			      <img src="images/carousel1_m.jpg" class="img-fluid d-block d-sm-none" alt="slide1">
+			    </div>
+			    <div class="carousel-item">
+			      <img src="images/carousel2.jpg" class="img-fluid d-none d-lg-block" alt="slide1">
+			      <img src="images/carousel2_t.jpg" class="img-fluid d-none d-sm-block d-lg-none" alt="slide1">
+			      <img src="images/carousel2_m.jpg" class="img-fluid d-block d-sm-none" alt="slide1">
+			    </div>
+			    <div class="carousel-item">
+			      <img src="images/carousel3.jpg" class="img-fluid d-none d-lg-block" alt="slide1">
+			      <img src="images/carousel3_t.jpg" class="img-fluid d-none d-sm-block d-lg-none" alt="slide1">
+			      <img src="images/carousel3_m.jpg" class="img-fluid d-block d-sm-none" alt="slide1">
+			    </div>
+			  </div>
+			  <a class="carousel-control-prev custom" href="#carouselExampleIndicators" role="button" data-slide="prev">
+			    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+			    <span class="sr-only">Previous</span>
+			  </a>
+			  <a class="carousel-control-next custom" href="#carouselExampleIndicators" role="button" data-slide="next">
+			    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+			    <span class="sr-only">Next</span>
+			  </a>
+			</div>
+		</section>
+		<!-- Carousel end -->
+		
+		<section class="posts-section">
+			<div class="container">
+				<div class="home-section-heading for-posts">
+					<h1>Posts</h1>
+				</div>
+				<div class="row">	
+					<div class="col-lg-8">
+						<div class="post-card-container for-posts">
+							<div class="filter-section">
+								<h1>Category: All</h1>
+								<div class="sorting-container">
+									<p>Sort By:</p>
+									<select name="sort" id="sort" class="sorting">
+										<option value="0">Newest</option>
+										<option value="0">Oldest</option>
+										<option value="0">Title Asc</option>
+										<option value="0">Title Desc</option>
+									</select>
+								</div>
+							</div>
+							<div class="post-card">
+								<div class="post-card-img">
+									<img src="images/blog_post_3.jpg" alt="">
+								</div>
+								<div class="post-card-body">
+									<h1 class="post-card-title">
+										<a href="single.html" class="link-custom-tld">Laravel Online Store</a>
+									</h1>
+									<div class="post-card-timestamp">
+										<span>Published: 3 days ago, </span>
+										<span>Updated: 10 minutes ago</span>
+									</div>
+									<p>Category: 
+										<a href="#" class="link-custom-tld">Laravel</a> | 
+										<a href="#" class="link-custom-tld">HTML & CSS</a>
+									</p>
+									<p class="post-card-exerpt">
+										Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.
+									</p>
+									<a href="#" class="post-card-link-btn">Read More</a>
+								</div>
+							</div>
+							<div class="post-card">
+								<div class="post-card-img">
+									<img src="images/blog_post_3.jpg" alt="">
+								</div>
+								<div class="post-card-body">
+									<h1 class="post-card-title">
+										<a href="single.html" class="link-custom-tld">Laravel Online Store</a>
+									</h1>
+									<div class="post-card-timestamp">
+										<span>Published: 3 days ago, </span>
+										<span>Updated: 10 minutes ago</span>
+									</div>
+									<p>Category: 
+										<a href="#" class="link-custom-tld">Laravel</a> | 
+										<a href="#" class="link-custom-tld">HTML & CSS</a>
+									</p>
+									<p class="post-card-exerpt">
+										Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.
+									</p>
+									<a href="#" class="post-card-link-btn">Read More</a>
+								</div>
+							</div>
+							<div class="post-card">
+								<div class="post-card-img">
+									<img src="images/blog_post_3.jpg" alt="">
+								</div>
+								<div class="post-card-body">
+									<h1 class="post-card-title">
+										<a href="single.html" class="link-custom-tld">Laravel Online Store</a>
+									</h1>
+									<div class="post-card-timestamp">
+										<span>Published: 3 days ago, </span>
+										<span>Updated: 10 minutes ago</span>
+									</div>
+									<p>Category: 
+										<a href="#" class="link-custom-tld">Laravel</a> | 
+										<a href="#" class="link-custom-tld">HTML & CSS</a>
+									</p>
+									<p class="post-card-exerpt">
+										Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.
+									</p>
+									<a href="#" class="post-card-link-btn">Read More</a>
+								</div>
+							</div>
+						</div>
+						<div class="pagination-container">
+							<ul class="pagination-custom">
+								<li class="pageitem-custom">
+									<a href="" class="pagelink-custom">&laquo;</a>
+								</li>
+								<li class="pageitem-custom active">
+									<a href="" class="pagelink-custom">1</a>
+								</li>
+								<li class="pageitem-custom">
+									<a href="" class="pagelink-custom">2</a>
+								</li>
+								<li class="pageitem-custom">
+									<a href="" class="pagelink-custom">3</a>
+								</li>
+								<li class="pageitem-custom">
+									<a href="" class="pagelink-custom">&raquo;</a>
+								</li>
+							</ul>
+						</div>
+					</div>
+					<div class="col-lg-4">
+						<div class="sidebar-container">
+							<div class="categories">
+								<h1>Categories</h1>
+								<ul class="category-menu">
+									<li class="category-item">
+										<a class="link-custom-tld" href="archive.html" class="category-link">PHP</a>
+									</li>
+									<li class="category-item">
+										<a class="link-custom-tld" href="archive.html" class="category-link">Laravel</a>
+									</li>
+									<li class="category-item">
+										<a class="link-custom-tld" href="archive.html" class="category-link">React.js</a>
+									</li>
+									<li class="category-item">
+										<a class="link-custom-tld" href="archive.html" class="category-link">React Native</a>
+									</li>
+									<li class="category-item">
+										<a class="link-custom-tld" href="archive.html" class="category-link">HTML & CSS</a>
+									</li>
+								</ul>
+							</div>
+							<div class="sidebar-portion-2">
+								<h1>Useful Websites</h1>
+								<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsum accusamus sapiente ipsam nobis voluptatem quod natus nesciunt nostrum obcaecati, nihil cum perferendis porro sit, reprehenderit quia cupiditate veritatis aperiam illum.</p>
+								<a class="link-custom-tld" href="#">Click Here</a>
+								<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsum accusamus sapiente ipsam nobis voluptatem quod natus nesciunt nostrum obcaecati, nihil cum perferendis porro sit, reprehenderit quia cupiditate veritatis aperiam illum.</p>
+								<a class="link-custom-tld" href="#">Click Here</a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+
+
+	</main>
+
+	
+	<footer>
+		<div class="footer-container">
+			<div class="footer-top">
+				<div class="container">
+					<div class="row">
+						<div class="col-md-6 col-lg-6">
+							<div class="footer-info">
+								<h1>HSA <span>Blog</span></h1>
+								<p>
+									Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.
+								</p>
+								<p>
+									<i class="fas fa-mobile-alt"></i>
+									09543521231
+								</p>
+								<p>
+									<i class="far fa-envelope"></i>
+									htetshine@htetshineaung.com <br>
+									htetshineaung.business@gmail.com
+								</p>
+							</div>	
+						</div>
+						<div class="col-md-3 col-lg-3">
+							<div class="footer-social-media">
+								<h1>Social Media</h1>
+								<ul>
+									<li>
+										<a class="link-custom-tld" href="#">
+											<i class="fab fa-github github"></i>
+											GitHub
+										</a>
+									</li>
+									<li>
+										<a class="link-custom-tld" href="#">
+											<i class="fab fa-linkedin linkedin"></i>
+											LinkedIn
+										</a>
+									</li>
+									<li>
+										<a class="link-custom-tld" href="#">
+											<i class="fab fa-twitter twitter"></i>
+											Twitter
+										</a>
+									</li>
+									<li>
+										<a class="link-custom-tld" href="#">
+											<i class="fab fa-facebook facebook"></i>
+											Facebook
+										</a>
+									</li>
+								</ul>
+							</div>
+						</div>
+						<div class="col-md-3 col-lg-3">
+							<div class="footer-shortcuts">
+								<h1>Shortcuts</h1>
+								<ul>
+									<li>
+										<a class="link-custom-tld" href="#">Laravel</a>
+									</li>
+									<li>
+										<a class="link-custom-tld" href="#">Wordpress</a>
+									</li>
+									<li>
+										<a class="link-custom-tld" href="#">React</a>
+									</li>
+									<li>
+										<a class="link-custom-tld" href="#">Contact</a>
+									</li>
+									<li>
+										<a class="link-custom-tld" href="#">About</a>
+									</li>
+									<li>
+										<a class="link-custom-tld" href="404.html">404</a>
+									</li>
+									<li>
+										<a class="link-custom-tld" href="post-none.html">No Post</a>
+									</li>
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="footer-bottom">
+				<p>&copy; All Rights Reserved 2020 | Htet Shine Aung</p>
+			</div>
+		</div>
+	</footer>
+	
+	<script src="js/bootstrap.min.js"></script>
+	<script src="js/main.js"></script>
+</body>
+</html>
