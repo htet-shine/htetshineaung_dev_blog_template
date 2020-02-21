@@ -130,7 +130,7 @@
 										<div class="post-content-section" id="sec3">
 											<h1>Database Structure</h1>
 											<div class="single-post-image-container">
-												<img src="images/simple_laravel_blog2_db_1.jpg" alt="" class="single-post-image">
+												<img src="images/simple_laravel_blog_2/simple_laravel_blog2_db_1.jpg" alt="" class="single-post-image">
 												<p>Database</p>
 											</div>
 											<p>
@@ -190,7 +190,6 @@
 												<a href="#" class="link-custom-tld">Here.</a>
 											</p>
 											<div class="single-post-code-block">
-												<p>// For laravel verions 6.0</p>
 												<p>composer require laravel/ui --dev</p>
 												<p>php artisan ui vue --auth</p>
 											</div>
@@ -216,10 +215,10 @@
 												Then I will create views for posts inside a seperate folder named posts.
 											</p>
 											<ul class="bullet-list non-toc">
-												<li>index.blade.php</li>
-												<li>view.blade.php</li>
-												<li>add.blade.php</li>
-												<li>edit.blade.php</li>
+												<li><b>index.blade.php</b></li>
+												<li><b>view.blade.php</b></li>
+												<li><b>add.blade.php</b></li>
+												<li><b>edit.blade.php</b></li>
 											</ul>
 											<p>
 												Then go to routes and create routes for each one. Then go to PostController and create all the functions for each view and test if it return the correct view.
@@ -242,6 +241,7 @@
 												Here is functions in Post Controller.
 											</p>
 											<div class="single-post-code-block">
+												<p>middleware: auth</p>
 												<p>index()</p>
 												<p>view($id)</p>
 												<p>add()</p>
@@ -252,20 +252,81 @@
 											</div>
 											<ul class="bullet-list non-toc">
 												<li>
-													index function will return all the posts ordered by date and limit 6 posts per page
+													<b>auth</b> middleware allow only <b>index</b> and <b>view</b> functions to be acessed by unauthenticated users. This is to prevent posts having no authors. That can make pretty much every page break.
 												</li>
 												<li>
-													view function will take id as a parameter and return a post matching that id
+													<b>index</b> function will return all the posts ordered by date and limit 6 posts per page
 												</li>
 												<li>
-													add function will return add new post form along with categories to choose from
+													<b>view</b> function will take post id as a parameter and return a post matching that id
 												</li>
 												<li>
-													create function will take inputs from add form, validate it and if input are not empty, insert data into the table else return error message.  
+													<b>add</b> function will check if user is logged in. If so return add new post form along with all categories to choose from. Else redirect to login page.
+												</li>
+												<li>
+													<b>create</b> function will check data in all input fields are present. If so insert post data into the table. Else return error message.  
+												</li>
+												<li>
+													<b>edit</b> function will take post id and check if authenticated user id is matched with user id of the post matching received post id. If so return edit post form. Else return a message. 
+												</li>
+												<li>
+													<b>update</b> function will check if data in all input fields are present. If so it will take post id and update the data of the post matching received post id. Else return a message.
+												</li>
+												<li>
+													<b>delete</b> function will take post id check if authenticated user id is matched with user id of the post matching received post id. If so delete the post from the table. Else return a message.
+												</li>
+											</ul>
+											<br>
+											<p>Here is functions in Category Controller.</p>
+											<div class="single-post-code-block">
+												<p>index()</p>
+												<p>add()</p>
+												<p>create()</p>
+												<p>edit($id)</p>
+												<p>update($id)</p>
+											</div>
+											<ul class="bullet-list non-toc">
+												<li>
+													<b>index</b> function will return all the categories
+												</li>
+												<li>
+													<b>add</b> function will return add new category form
+												</li>
+												<li>
+													<b>create</b> function will check data in all input fields are present. If so insert post data into the table. Else return error message.  
+												</li>
+												<li>
+													<b>edit</b> function will take category id and return edit form with data matching received category id.  
+												</li>
+												<li>
+													<b>update</b> function will check if data in all input fields are present. If so it will take category id and update the data of the category matching received post id. Else return error message.
+												</li>
+											</ul>
+											<br>
+											<p>Here is functions in Comment controller</p>
+											<div class="single-post-code-block">
+												<p>create()</p>
+											</div>
+											<ul class="bullet-list non-toc">
+												<li>
+													<b>create</b> function will insert comment into the table with the post id received from input fields.
 												</li>
 											</ul>
 										</div>
 
+										<div class="post-content-section" id="sec5">
+											<h1>User Guide</h1>
+											<p>
+												This section will guide you step by step on how to use the application. If you want to know how to install it <a href="#" class="link-custom-tld">click here</a> check out my github repository. There is a detail step by step guide.
+											</p>
+											<h2>Home Screen</h2>
+											<p>Once you setup everything on local server as shown in my github repo, you will be seeing below 
+											</p> <br>
+											<div class="single-post-image-container">
+												<img class="single-post-image" src="images/simple_laravel_blog_2/simple_laravel_blog_2_img_1.png" alt="">
+												<p>Image 1: Home Screen</p>
+											</div>
+										</div>
 
 									</div>
 								</div>
