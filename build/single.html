@@ -320,14 +320,82 @@
 												This section will guide you step by step on how to use the application. If you want to know how to install it <a href="#" class="link-custom-tld">click here</a> check out my github repository. There is a detail step by step guide.
 											</p>
 											<h2>Home Screen</h2>
-											<p>Once you setup everything on local server as shown in my github repo, you will be seeing below 
+											<p>Once you setup everything on local server as shown in my github repo, you should be seeing the something similar to the image 1 in your browser.
 											</p> <br>
 											<div class="single-post-image-container">
 												<img class="single-post-image" src="images/simple_laravel_blog_2/simple_laravel_blog_2_img_1.png" alt="">
 												<p>Image 1: Home Screen</p>
 											</div>
+											<p>
+												You can see top navigation bar and 6 posts per page. You can use the number buttons at the bottom of the page to navigate between pages. You can click on the post title to see full post as shown in the image below.
+											</p> <br>
+											<div class="single-post-image-container">
+												<img src="images/simple_laravel_blog_2/simple_laravel_blog_2_img_6.png" alt="" class="single-post-image">
+												<p>Image 2: Single Post</p>
+											</div>
+											<h2>Adding New Post</h2>
+											<p>
+												If you are not logged in, you will be asked to do so in order to submit posts. To login, you need a user account.
+												Click on "Register" in the navigation bar. You will see the image below.
+											</p><br>
+											<div class="single-post-image-container">
+												<img src="images/simple_laravel_blog_2/simple_laravel_blog_2_img_2.png" alt="" class="single-post-image">
+												<p>Image 3: Register User</p>
+											</div>
+											<p>
+												Type in the information and click register. (Note that password must include 8 characters). After that you can go back to login page by clicking "Login" in the navigation bar, type in your email and password and click login.
+												Now you can use all features of the site. <br> <br>
+												Lets start with adding post by clicking "Add New Post". Your will see a page with big title "Add New Post"
+											</p> <br>
+											<div class="single-post-image-container">
+												<img src="images/simple_laravel_blog_2/simple_laravel_blog_2_img_4.png" alt="" class="single-post-image">
+												<p>Image 4: Add New Post</p>
+											</div>
+											<p>
+												You can type in your post content, choose category and click "Add New". You will  be redirected back to home page with the success message. (Data must be present in all input fields, otherwise you will see an error message when clicking the button)
+											</p> <br>
+											<div class="single-post-image-container">
+												<img src="images/simple_laravel_blog_2/simple_laravel_blog_2_img_5.png" alt="" class="single-post-image">
+												<p>Image 5: Post Added</p>
+											</div>
+											<h2>Commenting on Posts</h2>
+											<p>
+												You can comment on posts by going to single post page. As shown in the image below, you will see both your comment and a message if your comment is submitted successfully.
+											</p> <br>
+											<div class="single-post-image-container">
+												<img src="images/simple_laravel_blog_2/simple_laravel_blog_2_img_7.png" alt="" class="single-post-image">
+												<p>Image 6: Comment</p>
+											</div>
+											<h2>Editing and Deleting Posts</h2>
+											<p>
+												Now you can edit or delete posts that are submitted by you. To edit click on your post title and you will be directed to single post page. There you will find edit and delete button to the right of the post title. Once you click on edit, you will see edit post page. You can change what you want to change and click "confirm". Your post will be updated.    
+											</p> <br>
+											<div class="single-post-image-container">
+												<img src="images/simple_laravel_blog_2/simple_laravel_blog_2_img_8.png" alt="" class="single-post-image">
+												<p>Image 7: Edit</p>
+											</div>
+											<p>
+												Similar Process for deleting. Click delete instead of edit and your post will be deleted.
+											</p>
+											<p>
+												You can also add and edit categories in the same way you add posts. See the Images below.
+											</p><br>
+											<div class="single-post-image-container">
+												<img src="images/simple_laravel_blog_2/simple_laravel_blog_2_img_11.png" alt="" class="single-post-image">
+												<p>Image 8: Adding Categories</p>
+											</div>
+											<div class="single-post-image-container">
+												<img src="images/simple_laravel_blog_2/simple_laravel_blog_2_img_12.png" alt="" class="single-post-image">
+												<p>Image 8: Editing Categories</p>
+											</div>
 										</div>
-
+										<div class="post-content-section" id="sec6">
+											<h1>Conclusion</h1>
+											<p>
+												Since this is a project purly focused on getting used to laravel, a lot of good UI/UX guidelines are left out. Such as no confirmation dialog when deleting post. If this is a real blog, it can be very costly such as users accidentally clicking "delete" button right beside "edit" and losing their entire post. And no post content check such as "post title must be below such amount of characters". <br><br>
+												I've learned how easier it is to find and fix errors during development compare to normal procedural php. And more importantly laravel covers a lot of basic security features by default such as SQL injections and  Cross-Site Request Forgery (CSRF). Overall this project was a good learning experience. Thank You for reading through all of this and please check out my other projects if you have time. 
+											</p>
+										</div>
 									</div>
 								</div>
 							</div>
