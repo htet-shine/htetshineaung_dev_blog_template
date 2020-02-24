@@ -1314,8 +1314,15 @@ ul.bullet-list.non-toc {
 	font-weight: 600;
 }
 .skills-desc > p {
+	display: flex;
+	align-items: center;
 	text-align: justify;
 	text-justify: inter-word;
+}
+.skills-desc-text {
+	min-height: 370px;
+	max-height: 370px;
+	margin: 1rem 0;
 }
 /*__________(_Skills Media Queries End)__________*/
 /*__________(_Skills Media Queries End)__________*/
