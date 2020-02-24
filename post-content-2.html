@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+	  <meta charset="utf-8">
+	  <meta http-equiv="x-ua-compatible" content="ie=edge">
+	  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+	  <link rel="stylesheet" href="css/bootstrap.min.css">
+	  <link rel="stylesheet" href="css/all.min.css">
+	  <link rel="stylesheet" href="css/main.css">
+
+	  <script src="js/jquery.min.js"></script>
+	  <script>
+	  	$(window).on('scroll', function () {
+	  		if ($(window).scrollTop()) {
+	  			$('.nav-container').addClass('navbar-sticky');
+	  		} else {
+	  			$('.nav-container').removeClass('navbar-sticky');
+
+	  		}
+	  	});
+	  </script>
+
+	  <title>Htet Shine Aung Blog Template</title>
+</head>
+<body>
+
+<div class="single-post-content">
+
+	<div class="single-post-toc">
+		<ul class="bullet-list">
+			<li><a class="link-custom-bld" href="#sec1">Introduction</a></li>
+			<li><a class="link-custom-bld" href="#sec2">Scope</a></li>
+			<li><a class="link-custom-bld" href="#sec3">Database Structure</a></li>
+			<li><a class="link-custom-bld" href="#sec4">Implementation</a></li>
+			<li><a class="link-custom-bld" href="#sec5">User Guide</a></li>
+		</ul>
+	</div>
+
+	<div class="post-content-section" id="sec1">
+		<h1>Introduction</h1>
+		<p>
+			Hi. Welcome to my website. <br>
+			This is my very first web application that I created using Laravel PHP framework. This is a very simple blog which lack a lot of practical features. But it helped beginners like me (who come from writing only procedural PHP) understand how developing with a framework works. So this little app will cover some of the very basics of dynamic websites, simple CRUD operations. I will explain the scope of the app in next section.
+		</p>
+	</div>
+
+	<div class="post-content-section" id="sec2">
+		<h1>Scope</h1>
+		<ul class="bullet-list non-toc">
+			<li>Users will be able
+				<ul class="bullet-list non-toc">
+					<li>create accounts and login</li>
+					<li>create new and edit existing categories</li>
+					<li>create, edit and delete thier own posts</li>
+					<li>comment on posts</li>
+				</ul>														
+			</li>	
+		</ul>
+	</div>
+
+	<div class="post-content-section" id="sec3">
+		<h1>Database Structure</h1>
+		<div class="single-post-image-container">
+			<img src="images/simple_laravel_blog_2/simple_laravel_blog2_db_1.jpg" alt="" class="single-post-image">
+
+			<img src="http://localhost/wordpress/htetshineaung_dev_blog/wp-content/uploads/2020/02/simple_laravel_blog2_db_1.jpg" alt="" width="650" height="auto" class="single-post-image alignnone size-full wp-image-228" />
+
+			<p>Database</p>
+		</div>
+		<p>
+			Database has four tables and a few other default ones created by laravel. A category and user can have no or many posts. A post can have many or no comments.
+		</p>
+	</div>
+
+	<div class="post-content-section" id="sec4">
+		<h1>Implementation</h1>
+		<p>
+			This section will include brief explanation of my development process. I'm not going to explain line by line as it will make this blog post way too long for anyone's attention span.
+		</p>
+		<h2>Laravel Installation</h2>
+		<p>
+			I do not like installing laravel globally because I like to contain everything in a project folder and choose the versions I want. So, "cd" into a folder and run the following command.
+		</p>
+		<div class="single-post-code-block">
+			<p>composer create-project --prefer-dist laravel/laravel [folder name]</p>
+		</div>
+		<p>
+			Then I've "cd" into the root folder and run following commands.
+		</p>
+		<div class="single-post-code-block">
+			<p>php artisan make:model Post -m</p>
+			<p>php artisan make:seeder PostsTableSeeder</p>
+			<p>php artisan make:controller PostController</p>
+		</div>
+		<p>
+			First commnad will create a Post Model and database migration which will be use to create posts table in database. <br>
+			Second one will create a seeder file that I will use to insert data into database. <br>
+			Third one will create a Controller for Post where I will code all the functions that will interact with views which in turn interacts with users. <br>
+		</p> 
+		<br>
+		<p>
+			After that I will create all of the above post categories and comments by running the following commands.
+		</p>
+		<div class="single-post-code-block">
+			<p>php artisan make:model Category -m</p>
+			<p>php artisan make:seeder CategoriesTableSeeder</p>
+			<p>php artisan make:controller CategoryController</p>
+			<br>
+			<p>php artisan make:model Comment -m</p>
+			<p>php artisan make:seeder CommentsTableSeeder</p>
+			<p>php artisan make:controller CommentController</p>
+		</div>
+		<br>
+		<p>
+			I will be utilizing laravel's default layout and authentication function. So I will run this following command.
+		</p>
+		<br>
+		<p>For laravel verions below 6.0</p>
+		<div class="single-post-code-block">
+			<p>php artisan make:auth</p>
+		</div>
+		<p>
+			For laravel version 6.0. See laravel documentation 
+			<a href="#" class="link-custom-tld">Here.</a>
+		</p>
+		<div class="single-post-code-block">
+			<p>composer require laravel/ui --dev</p>
+			<p>php artisan ui vue --auth</p>
+		</div>
+		<p>
+			This will create User Model, Home Controller, users migration, default layout and view files and routes.
+		</p>
+		<br>
+		<p>
+			These are the relations between post and category, user and comment.
+		</p>
+		<br>
+		<p>
+			A category can have many posts <br>
+			A user can have many posts <br>
+			A post can have many comments 
+		</p>
+		<br>
+		<p>
+			By having relationship functions, I can get any category, user and comment related to posts.
+		</p>
+		<br>
+		<p>
+			Then I will create views for posts inside a seperate folder named posts.
+		</p>
+		<ul class="bullet-list non-toc">
+			<li><b>index.blade.php</b></li>
+			<li><b>view.blade.php</b></li>
+			<li><b>add.blade.php</b></li>
+			<li><b>edit.blade.php</b></li>
+		</ul>
+		<p>
+			Then go to routes and create routes for each one. Then go to PostController and create all the functions for each view and test if it return the correct view.
+		</p>
+		<br>
+		<p>
+			Then I will add all the attributes already planned in database structure to according migrations. And add pre-made data in according seeders.
+		</p>
+		<br>
+		<p>
+			After that create a database in my localhost and run following commands in my root directory.
+		</p>
+		<div class="single-post-code-block">
+			<p>php artisan migrate</p>
+			<p>php artisan db:seed</p>
+		</div>
+		<p>First command create the tables and second one insert the data.</p>
+		<br>
+		<p>
+			Here is functions in Post Controller.
+		</p>
+		<div class="single-post-code-block">
+			<p>middleware: auth</p>
+			<p>index()</p>
+			<p>view($id)</p>
+			<p>add()</p>
+			<p>create()</p>
+			<p>edit($id)</p>
+			<p>update($id)</p>
+			<p>delete($id)</p>
+		</div>
+		<ul class="bullet-list non-toc">
+			<li>
+				<b>auth</b> middleware allow only <b>index</b> and <b>view</b> functions to be acessed by unauthenticated users. This is to prevent posts having no authors. That can make pretty much every page break.
+			</li>
+			<li>
+				<b>index</b> function will return all the posts ordered by date and limit 6 posts per page
+			</li>
+			<li>
+				<b>view</b> function will take post id as a parameter and return a post matching that id
+			</li>
+			<li>
+				<b>add</b> function will check if user is logged in. If so return add new post form along with all categories to choose from. Else redirect to login page.
+			</li>
+			<li>
+				<b>create</b> function will check data in all input fields are present. If so insert post data into the table. Else return error message.  
+			</li>
+			<li>
+				<b>edit</b> function will take post id and check if authenticated user id is matched with user id of the post matching received post id. If so return edit post form. Else return a message. 
+			</li>
+			<li>
+				<b>update</b> function will check if data in all input fields are present. If so it will take post id and update the data of the post matching received post id. Else return a message.
+			</li>
+			<li>
+				<b>delete</b> function will take post id check if authenticated user id is matched with user id of the post matching received post id. If so delete the post from the table. Else return a message.
+			</li>
+		</ul>
+		<br>
+		<p>Here is functions in Category Controller.</p>
+		<div class="single-post-code-block">
+			<p>index()</p>
+			<p>add()</p>
+			<p>create()</p>
+			<p>edit($id)</p>
+			<p>update($id)</p>
+		</div>
+		<ul class="bullet-list non-toc">
+			<li>
+				<b>index</b> function will return all the categories
+			</li>
+			<li>
+				<b>add</b> function will return add new category form
+			</li>
+			<li>
+				<b>create</b> function will check data in all input fields are present. If so insert post data into the table. Else return error message.  
+			</li>
+			<li>
+				<b>edit</b> function will take category id and return edit form with data matching received category id.  
+			</li>
+			<li>
+				<b>update</b> function will check if data in all input fields are present. If so it will take category id and update the data of the category matching received post id. Else return error message.
+			</li>
+		</ul>
+		<br>
+		<p>Here is functions in Comment controller</p>
+		<div class="single-post-code-block">
+			<p>create()</p>
+		</div>
+		<ul class="bullet-list non-toc">
+			<li>
+				<b>create</b> function will insert comment into the table with the post id received from input fields.
+			</li>
+		</ul>
+	</div>
+
+	<div class="post-content-section" id="sec5">
+		<h1>User Guide</h1>
+		<p>
+			This section will guide you step by step on how to use the application. If you want to know how to install it <a href="#" class="link-custom-tld">click here</a> check out my github repository. There is a detail step by step guide.
+		</p>
+		<h2>Home Screen</h2>
+		<p>Once you setup everything on local server as shown in my github repo, you should be seeing the something similar to the image 1 in your browser.
+		</p> <br>
+		<div class="single-post-image-container">
+			
+			<img class="single-post-image" src="images/simple_laravel_blog_2/simple_laravel_blog_2_img_1.png" alt="">
+
+			<img src="http://localhost/wordpress/htetshineaung_dev_blog/wp-content/uploads/2020/02/simple_laravel_blog_2_img_1.png" alt="" width="1720" height="auto" class="single-post-image alignnone size-full wp-image-230" />
+
+			<p>Image 1: Home Screen</p>
+		</div>
+		<p>
+			You can see top navigation bar and 6 posts per page. You can use the number buttons at the bottom of the page to navigate between pages. You can click on the post title to see full post as shown in the image below.
+		</p> <br>
+		<div class="single-post-image-container">
+			<img src="images/simple_laravel_blog_2/simple_laravel_blog_2_img_6.png" alt="" class="single-post-image">
+			<p>Image 2: Single Post</p>
+		</div>
+		<h2>Adding New Post</h2>
+		<p>
+			If you are not logged in, you will be asked to do so in order to submit posts. To login, you need a user account.
+			Click on "Register" in the navigation bar. You will see the image below.
+		</p><br>
+		<div class="single-post-image-container">
+			<img src="images/simple_laravel_blog_2/simple_laravel_blog_2_img_2.png" alt="" class="single-post-image">
+			<p>Image 3: Register User</p>
+		</div>
+		<p>
+			Type in the information and click register. (Note that password must include 8 characters). After that you can go back to login page by clicking "Login" in the navigation bar, type in your email and password and click login.
+			Now you can use all features of the site. <br> <br>
+			Lets start with adding post by clicking "Add New Post". Your will see a page with big title "Add New Post"
+		</p> <br>
+		<div class="single-post-image-container">
+			<img src="images/simple_laravel_blog_2/simple_laravel_blog_2_img_4.png" alt="" class="single-post-image">
+			<p>Image 4: Add New Post</p>
+		</div>
+		<p>
+			You can type in your post content, choose category and click "Add New". You will  be redirected back to home page with the success message. (Data must be present in all input fields, otherwise you will see an error message when clicking the button)
+		</p> <br>
+		<div class="single-post-image-container">
+			<img src="images/simple_laravel_blog_2/simple_laravel_blog_2_img_5.png" alt="" class="single-post-image">
+			<p>Image 5: Post Added</p>
+		</div>
+		<h2>Commenting on Posts</h2>
+		<p>
+			You can comment on posts by going to single post page. As shown in the image below, you will see both your comment and a message if your comment is submitted successfully.
+		</p> <br>
+		<div class="single-post-image-container">
+			<img src="images/simple_laravel_blog_2/simple_laravel_blog_2_img_7.png" alt="" class="single-post-image">
+			<p>Image 6: Comment</p>
+		</div>
+		<h2>Editing and Deleting Posts</h2>
+		<p>
+			Now you can edit or delete posts that are submitted by you. To edit click on your post title and you will be directed to single post page. There you will find edit and delete button to the right of the post title. Once you click on edit, you will see edit post page. You can change what you want to change and click "confirm". Your post will be updated.    
+		</p> <br>
+		<div class="single-post-image-container">
+			<img src="images/simple_laravel_blog_2/simple_laravel_blog_2_img_8.png" alt="" class="single-post-image">
+			<p>Image 7: Edit</p>
+		</div>
+		<p>
+			Similar Process for deleting. Click delete instead of edit and your post will be deleted.
+		</p>
+		<p>
+			You can also add and edit categories in the same way you add posts. See the Images below.
+		</p><br>
+		<div class="single-post-image-container">
+			<img src="images/simple_laravel_blog_2/simple_laravel_blog_2_img_11.png" alt="" class="single-post-image">
+			<p>Image 8: Adding Categories</p>
+		</div>
+		<div class="single-post-image-container">
+			<img src="images/simple_laravel_blog_2/simple_laravel_blog_2_img_12.png" alt="" class="single-post-image">
+			<p>Image 8: Editing Categories</p>
+		</div>
+	</div>
+	<div class="post-content-section" id="sec6">
+		<h1>Conclusion</h1>
+		<p>
+			Since this is a project purly focused on getting used to laravel, a lot of good UI/UX guidelines are left out. Such as no confirmation dialog when deleting post. If this is a real blog, it can be very costly such as users accidentally clicking "delete" button right beside "edit" and losing their entire post. And no post content check such as "post title must be below such amount of characters". <br><br>
+			I've learned how easier it is to find and fix errors during development compare to normal procedural php. And more importantly laravel covers a lot of basic security features by default such as SQL injections and  Cross-Site Request Forgery (CSRF). Overall this project was a good learning experience. Thank You for reading through all of this and please check out my other projects if you have time. 
+		</p>
+	</div>
+
+</div>
+
+	<script src="js/bootstrap.min.js"></script>
+	<script src="js/main.js"></script>
+</body>
+</html>
