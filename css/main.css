@@ -991,6 +991,12 @@ a.pagelink-custom {
 	border: none;
 	font-weight: 500;
 }
+.single-post-heading-image {  /* new */
+	border: 1px solid var(--lighter-gray);
+	border-radius: 10px;
+	overflow: hidden;
+	margin: 1rem 0;
+}
 .single-post-info-action {
 	display: flex;
 	justify-content: space-between;
@@ -1049,6 +1055,7 @@ a.pagelink-custom {
 	margin: 1rem 0 .5rem 0;
 }
 .single-post-content p {
+	line-height: 1.8rem;
 	text-align: justify;
 	text-justify: inter-word;
 }
