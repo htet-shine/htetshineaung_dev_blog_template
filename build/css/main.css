@@ -417,6 +417,7 @@ main#main {
 	background: var(--bs-light);
 }
 
+
 /*#####################################################################*/
 
 /*-------------Hero Image Start-------------*/
@@ -1231,10 +1232,11 @@ ul.bullet-list.non-toc {
 	border-bottom: 2px solid var(--lighter-gray);
 }
 .form-group-custom {
-	margin: 0 0 1rem 0;
+	margin: 0 0 1.5rem 0;
 }
 .contact-form-custom label {
-	color: var(--gray);
+	color: var(--light-gray);
+	font-size: .9rem;
 }
 .contact-form-custom input {
 	display: block;
@@ -1242,7 +1244,6 @@ ul.bullet-list.non-toc {
 	padding: .3rem .6rem;
 	border: 1px solid var(--lighter-gray);
 	border-radius: 10px;
-	color: var(--gray);
 }
 .contact-form-custom textarea {
 	width: 100%;
@@ -1250,6 +1251,17 @@ ul.bullet-list.non-toc {
 	border: 1px solid var(--lighter-gray);
 	border-radius: 10px;
 	padding: .3rem .6rem;
+}
+.contact-form-custom i {
+	display: block;
+	margin:0 0 1.5rem 0;
+	color: var(--light-gray);
+}
+.contact-form-custom input, textarea {
+	color: var(--gray);
+}
+.contact-form-custom i > span, label > span {
+	color: var(--teal);
 }
 .contact-form-custom input:focus, textarea:focus {
 	border: 1px solid var(--light-teal);
@@ -1368,3 +1380,15 @@ ul.bullet-list.non-toc {
 	text-transform: uppercase;
 }
 /*-------------404 End-------------*/
+
+
+pre {
+	padding: 1rem;
+	background: var(--teal-gray);
+	color: var(--gray);
+	font-size: 100%;
+	padding: 1rem 1rem 1rem 1rem;
+	border-radius: 10px;
+	margin: 1rem 0;
+	overflow-x: auto;
+}
