@@ -1242,10 +1242,13 @@ ul.bullet-list.non-toc {
 .contact-form-custom input {
 	display: block;
 	width: 100%;
+	background: var(--white);
 	padding: .3rem .6rem;
-	border: 1px solid var(--lighter-gray);
 	border-radius: 10px;
-	box-shadow: none;
+	border: none;
+	outline: none;
+	/* border: 1px solid var(--lighter-gray); */
+	/* -webkit-appearance: none; */
 }
 .contact-form-custom textarea {
 	width: 100%;
