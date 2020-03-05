@@ -1245,17 +1245,20 @@ ul.bullet-list.non-toc {
 	background: var(--white);
 	padding: .3rem .6rem;
 	border-radius: 10px;
-	/* border: none; */
-	outline: none;
-	/* border: 1px solid var(--lighter-gray); */
+	border: 1px solid var(--lighter-gray);
 	-webkit-appearance: none;
+	box-shadow: none;
 }
 .contact-form-custom textarea {
+	display: block;
 	width: 100%;
 	min-height: 200px;
+	background: var(--white);
 	border: 1px solid var(--lighter-gray);
 	border-radius: 10px;
 	padding: .3rem .6rem;
+	-webkit-appearance: none;
+	box-shadow: none;
 }
 .contact-form-custom i {
 	display: block;
@@ -1272,7 +1275,7 @@ ul.bullet-list.non-toc {
 	border: 1px solid var(--light-teal);
 	box-shadow: 0 0 10px 0 rgba(109,220,216,0.5);
 	outline: none;
-	transition: .2s;
+	transition: border .2s ease, box-shadow .2s ease;
 }
 .contact-info p {
 	font-weight: 500;
