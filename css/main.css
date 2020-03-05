@@ -1245,6 +1245,7 @@ ul.bullet-list.non-toc {
 	padding: .3rem .6rem;
 	border: 1px solid var(--lighter-gray);
 	border-radius: 10px;
+	box-shadow: none;
 }
 .contact-form-custom textarea {
 	width: 100%;
