@@ -1245,10 +1245,10 @@ ul.bullet-list.non-toc {
 	background: var(--white);
 	padding: .3rem .6rem;
 	border-radius: 10px;
-	border: none;
+	/* border: none; */
 	outline: none;
 	/* border: 1px solid var(--lighter-gray); */
-	/* -webkit-appearance: none; */
+	-webkit-appearance: none;
 }
 .contact-form-custom textarea {
 	width: 100%;
