@@ -1197,6 +1197,7 @@ ul.bullet-list.non-toc {
 .about-content-section p {
 	text-align: justify;
 	text-justify: inter-word;
+	line-height: 1.8rem;
 }
 .about-content-sub-section {
 	margin-top: 1rem;
@@ -1337,10 +1338,11 @@ ul.bullet-list.non-toc {
 	align-items: center;
 	text-align: justify;
 	text-justify: inter-word;
+	line-height: 1.8rem;
 }
 .skills-desc-text {
-	min-height: 370px;
-	max-height: 370px;
+	min-height: 400px;
+	max-height: 400px;
 	margin: 1rem 0;
 }
 /*__________(_Skills Media Queries End)__________*/
