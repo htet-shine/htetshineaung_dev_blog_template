@@ -9,6 +9,7 @@
 	  <link rel="stylesheet" href="css/all.min.css">
 	  <link rel="stylesheet" href="css/main.css">
 
+
 	  <script src="js/jquery.min.js"></script>
 	  <script>
 	  	$(window).on('scroll', function () {
@@ -63,7 +64,7 @@
 	</header>
 
 	<main id="main">
-		
+
 				<section class="posts-section">
 					<div class="container">
 						<div class="home-section-heading for-single-post">
@@ -150,22 +151,20 @@
 											<p>
 												I do not like installing laravel globally because I like to contain everything in a project folder and choose the versions I want. So, "cd" into a folder and run the following command.
 											</p>
-											<div class="single-post-code-block">
-												<p>composer create-project --prefer-dist laravel/laravel [folder name]</p>
-											</div>
+
+<pre class="code-block">
+composer create-project --prefer-dist laravel/laravel [folder name]
+</pre>
 											<p>
 												Then I've "cd" into the root folder and run following commands.
 											</p>
-											<div class="single-post-code-block">
-												<p>php artisan make:model Post -m</p>
-												<p>php artisan make:seedekr PostsTableSeeder</p>
-												<p>php artisan make:controller PostController</p>
-											</div>
-<pre>
+
+<pre class="code-block">
 php artisan make:model Post -m
 php artisan make:seeder PostsTableSeeder
 php artisan make:controller PostController
 </pre>
+
 											<p>
 												First commnad will create a Post Model and database migration which will be use to create posts table in database. <br>
 												Second one will create a seeder file that I will use to insert data into database. <br>
@@ -175,32 +174,37 @@ php artisan make:controller PostController
 											<p>
 												After that I will create all of the above post categories and comments by running the following commands.
 											</p>
-											<div class="single-post-code-block">
-												<p>php artisan make:model Category -m</p>
-												<p>php artisan make:seeder CategoriesTableSeeder</p>
-												<p>php artisan make:controller CategoryController</p>
-												<br>
-												<p>php artisan make:model Comment -m</p>
-												<p>php artisan make:seeder CommentsTableSeeder</p>
-												<p>php artisan make:controller CommentController</p>
-											</div>
+
+<pre class="code-block">
+php artisan make:model Category -m
+php artisan make:seeder CategoriesTableSeeder
+php artisan make:controller CategoryController
+
+php artisan make:model Comment -m
+php artisan make:seeder CommentsTableSeeder
+php artisan make:controller CommentController
+</pre>
 											<br>
 											<p>
 												I will be utilizing laravel's default layout and authentication function. So I will run this following command.
 											</p>
 											<br>
 											<p>For laravel verions below 6.0</p>
-											<div class="single-post-code-block">
-												<p>php artisan make:auth</p>
-											</div>
+
+<pre class="code-block">
+php artisan make:auth
+</pre>
+
 											<p>
 												For laravel version 6.0. See laravel documentation 
 												<a href="#" class="link-custom-tld">Here.</a>
 											</p>
-											<div class="single-post-code-block">
-												<p>composer require laravel/ui --dev</p>
-												<p>php artisan ui vue --auth</p>
-											</div>
+
+<pre class="code-block">
+composer require laravel/ui --dev
+php artisan ui vue --auth
+</pre>
+
 											<p>
 												This will create User Model, Home Controller, users migration, default layout and view files and routes.
 											</p>
@@ -239,25 +243,29 @@ php artisan make:controller PostController
 											<p>
 												After that create a database in my localhost and run following commands in my root directory.
 											</p>
-											<div class="single-post-code-block">
-												<p>php artisan migrate</p>
-												<p>php artisan db:seed</p>
-											</div>
+
+<pre class="code-block">
+php artisan migrate
+php artisan db:seed
+</pre>
+
 											<p>First command create the tables and second one insert the data.</p>
 											<br>
 											<p>
 												Here is functions in Post Controller.
 											</p>
-											<div class="single-post-code-block">
-												<p>middleware: auth</p>
-												<p>index()</p>
-												<p>view($id)</p>
-												<p>add()</p>
-												<p>create()</p>
-												<p>edit($id)</p>
-												<p>update($id)</p>
-												<p>delete($id)</p>
-											</div>
+
+<pre class="code-block">
+middleware: auth
+index()
+view($id)
+add()
+create()
+edit($id)
+update($id)
+delete($id)
+</pre>
+
 											<ul class="bullet-list non-toc">
 												<li>
 													<b>auth</b> middleware allow only <b>index</b> and <b>view</b> functions to be acessed by unauthenticated users. This is to prevent posts having no authors. That can make pretty much every page break.
@@ -286,13 +294,15 @@ php artisan make:controller PostController
 											</ul>
 											<br>
 											<p>Here is functions in Category Controller.</p>
-											<div class="single-post-code-block">
-												<p>index()</p>
-												<p>add()</p>
-												<p>create()</p>
-												<p>edit($id)</p>
-												<p>update($id)</p>
-											</div>
+
+<pre class="code-block">
+index()
+add()
+create()
+edit($id)
+update($id)
+</pre>
+
 											<ul class="bullet-list non-toc">
 												<li>
 													<b>index</b> function will return all the categories
@@ -312,9 +322,11 @@ php artisan make:controller PostController
 											</ul>
 											<br>
 											<p>Here is functions in Comment controller</p>
-											<div class="single-post-code-block">
-												<p>create()</p>
-											</div>
+
+<pre class="code-block">
+create()
+</pre>
+
 											<ul class="bullet-list non-toc">
 												<li>
 													<b>create</b> function will insert comment into the table with the post id received from input fields.
