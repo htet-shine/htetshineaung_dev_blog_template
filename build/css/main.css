@@ -1095,9 +1095,16 @@ ul.bullet-list.non-toc {
 .single-post-code-block > p {
 	font-family: Fira Code, monospace;
 }
-
-
-
+pre.code-block {
+	padding: 1rem;
+	background: var(--teal-gray);
+	color: var(--gray);
+	font-size: 100%;
+	padding: 1rem 1rem 1rem 1rem;
+	border-radius: 10px;
+	margin: 1rem 0;
+	overflow-x: auto;
+}
 .latest-posts-container {
 	margin: 0 0 2rem 0;
 	padding: 0 0 1rem 0;
@@ -1177,10 +1184,10 @@ ul.bullet-list.non-toc {
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	padding: 2rem 0;
+	padding: 3rem 1rem;
 }
 .about-content {
-	width: 800px;
+	/* width: 800px; */
 }
 .about-content-section {
 	margin-bottom: 2rem;
@@ -1190,7 +1197,7 @@ ul.bullet-list.non-toc {
 }
 .about-content-section h1 {
 	font-size: 1.8rem;
-	font-weight: 400;
+	font-weight: 600;
 	margin-bottom: .8rem;
 	text-align: center;
 }
@@ -1213,12 +1220,12 @@ ul.bullet-list.non-toc {
 
 /*-------------Contact Start-------------*/
 .contact-content-container {
-	padding: 2rem 0;
+	padding: 3rem 0;
 }
-.contact-content-container h1 {
+.contact-content h1 {
 	margin: 0 0 2rem 0;
 	text-align: center;
-	font-weight: 400;
+	font-weight: 600;
 	font-size: 1.8rem;
 }
 .contact-form-custom {
@@ -1239,24 +1246,13 @@ ul.bullet-list.non-toc {
 	color: var(--light-gray);
 	font-size: .9rem;
 }
-.contact-form-custom input {
+.contact-form-custom input, textarea {
 	display: block;
 	width: 100%;
 	background: var(--white);
 	padding: .3rem .6rem;
 	border-radius: 10px;
 	border: 1px solid var(--lighter-gray);
-	-webkit-appearance: none;
-	box-shadow: none;
-}
-.contact-form-custom textarea {
-	display: block;
-	width: 100%;
-	min-height: 200px;
-	background: var(--white);
-	border: 1px solid var(--lighter-gray);
-	border-radius: 10px;
-	padding: .3rem .6rem;
 	-webkit-appearance: none;
 	box-shadow: none;
 }
@@ -1391,13 +1387,3 @@ ul.bullet-list.non-toc {
 /*-------------404 End-------------*/
 
 
-pre {
-	padding: 1rem;
-	background: var(--teal-gray);
-	color: var(--gray);
-	font-size: 100%;
-	padding: 1rem 1rem 1rem 1rem;
-	border-radius: 10px;
-	margin: 1rem 0;
-	overflow-x: auto;
-}
