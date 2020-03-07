@@ -134,6 +134,7 @@ a.link-custom-wld:hover {
 	color: var(--bs-light);
 	padding: .5rem .7rem;
 	margin: 0 .5rem 0 0;
+	border: none;
 	border-radius: 10px;
 	background: linear-gradient(to right, var(--light-blue) 0%, var(--light-teal) 100%);
 	z-index: 1;
@@ -1248,10 +1249,11 @@ pre.code-block {
 	color: var(--light-gray);
 	font-size: .9rem;
 }
-.contact-form-custom input, textarea {
+.contact-form-custom input[type = text], textarea {
 	display: block;
 	width: 100%;
 	background: var(--white);
+	color: var(--gray);
 	padding: .3rem .6rem;
 	border-radius: 10px;
 	border: 1px solid var(--lighter-gray);
@@ -1263,17 +1265,21 @@ pre.code-block {
 	margin:0 0 1.5rem 0;
 	color: var(--light-gray);
 }
-.contact-form-custom input, textarea {
-	color: var(--gray);
-}
 .contact-form-custom i > span, label > span {
 	color: var(--teal);
 }
-.contact-form-custom input:focus, textarea:focus {
+.contact-form-custom input[type = text]:focus, textarea:focus {
 	border: 1px solid var(--light-teal);
 	box-shadow: 0 0 10px 0 rgba(109,220,216,0.5);
 	outline: none;
 	transition: border .2s ease, box-shadow .2s ease;
+}
+.contact-form-custom button.link-btn-custom-tbg {
+	width: 100%;
+}
+.contact-form-custom button.link-btn-custom-tbg:hover {
+	transform: scale(1.02, 1.02);
+	transition: all .2s ease-in-out;
 }
 .contact-info p {
 	font-weight: 500;
