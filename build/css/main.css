@@ -13,6 +13,7 @@
 
 	--blue: #3781EF;
 	--light-blue: #80B3FF;
+	--text-blue: #659EF5;
 	--dark-blue: #48638B;
 
 	--white: #FFFFFF;
@@ -65,6 +66,9 @@ h1, h2, h3, h4, h5, p, span {
 	margin: 0;
 	padding: 0;
 }
+p {
+	line-height: 1.8;
+}
 a.link-custom-tld {
 	color: var(--teal);
 	font-weight: 500;
@@ -75,14 +79,11 @@ a.link-custom-tld:hover {
 	color: var(--dark-teal);
 	border-bottom: 1px solid rgba(23,62,67,1);
 }
-a.link-custom-tld::after {
-	/* content: ','; */
-}
 a.link-custom-tld:last-child::after {
 	content: '';
 }
 a.link-custom-bld {
-	color: var(--light-blue);
+	color: var(--text-blue);
 	font-weight: 500;
 	border-bottom: 1px solid rgba(72,99,139,0);
 	transition: .3s ease;
@@ -789,12 +790,12 @@ footer {
 }
 .footer-social-media a, .footer-shortcuts a {
 	display: table;
-	align-items: center;
 	padding: .5rem 0;
 }
 .footer-social-media li > a > i {
 	vertical-align: middle;
 	margin: 0 .5rem 0 0;
+	width: 30px;
 	font-size: 27px;
 	color: var(--gray);
 }
@@ -814,7 +815,7 @@ footer {
 	align-items: center;
 	height: 100%;
 	background: var(--dark) ;
-	font-family: consolas, sans-serif;
+	font-family: Consolas, monospace;
 }
 .footer-bottom p {
 	color: var(--light-gray);
@@ -825,8 +826,9 @@ footer {
 		padding: 2rem 0;
 	}
 	.footer-info, .footer-social-media, .footer-shortcuts {
-		margin: 0 0 2rem 0;
-		border-bottom: 2px solid var(--light-gray);
+		margin: 0 0 1.5rem 0;
+		padding: 0 0 1rem 0;
+		border-bottom: 2px solid var(--lighter-gray);
 	}
 }
 @media screen and (max-width: 575.98px) {
@@ -1220,7 +1222,7 @@ pre.code-block {
 
 /*-------------Contact Start-------------*/
 .contact-content-container {
-	padding: 3rem 0;
+	padding: 3rem 1rem;
 }
 .contact-content h1 {
 	margin: 0 0 2rem 0;
