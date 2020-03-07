@@ -86,17 +86,21 @@
 		<p>
 			I do not like installing laravel globally because I like to contain everything in a project folder and choose the versions I want. So, "cd" into a folder and run the following command.
 		</p>
-		<div class="single-post-code-block">
-			<p>composer create-project --prefer-dist laravel/laravel [folder name]</p>
-		</div>
+
+<pre class="code-block">
+composer create-project --prefer-dist laravel/laravel [folder name]
+</pre>
+
 		<h2>View Files Structure</h2>
 		<p>
 			Now I've already created a html template for this project which you can check out in my <a href="#" class="link-custom-tld">github repo</a>. I used github pages in order to make sure the responsive side of things look good on mobile devices.
 			HTML template on its own would not go into laravel blade. So, I converted everything to suit laravel blade template and ran this command to customize pagination styling.
 		</p>
-		<div class="single-post-code-block">
-			<p>php artisan vendor:publish --tag=laravel-pagination</p>
-		</div>
+
+<pre class="code-block">
+php artisan vendor:publish --tag=laravel-pagination
+</pre>
+
 		<p>
 			This command created the vendor/pagination folder in views folder. It include default paginations (bootstrap 4). I put my custom pagination file in that folder. So whenever I need to use pagination, I call the laravel pagination function with my custom file as a parameter.
 		</p>
@@ -148,18 +152,22 @@
 		<p>
 			I wanted to be able to show all the categories and products. So first I created a category model, migration and seeder by using this command
 		</p>
-		<div class="single-post-code-block">
-			<p>php artisan make:model Product -m</p>
-			<p>php artisan make:seeder ProductsTableSeeder</p>
-			<p>php artisan make:model Category -m</p>
-			<p>php artisan make:seeder CategoriesTableSeeder</p>
-		</div>
+
+<pre class="code-block">
+php artisan make:model Product -m
+php artisan make:seeder ProductsTableSeeder
+php artisan make:model Category -m
+php artisan make:seeder CategoriesTableSeeder
+</pre>
+
 		<p>
 			I also wanted a product to have multiple categories and obviously a category will have multiple products. The relationship between products and categories table became many to many. So I created a join table which includes product id and category id as foreign keys. Here is the commnad to create join table.
 		</p>
-		<div class="single-post-code-block">
-			<p>php artisan make:migration create_category_product_table  --create=category_product</p>
-		</div>
+
+<pre class="code-block">
+php artisan make:migration create_category_product_table --create=category_product
+</pre>
+
 		<p>
 			The relationship between two models, product and category, is declared in both models.
 		</p> <br>
@@ -173,21 +181,27 @@
 		<p>
 			After that, I added all the attributes in products and categories migrations and create sample data array in seeder file. Then created database table and insert data by using this command.
 		</p>
-		<div class="single-post-code-block">
-			<p>php artisan migrate –seed</p>
-		</div>
+
+<pre class="code-block">
+php artisan migrate –seed
+</pre>
+
 		<p>Then I created HomePageController and ProductController</p>
-		<div class="single-post-code-block">
-			<p>php artisan make:controller ProductController</p>
-		</div>
+
+<pre class="code-block">
+php artisan make:controller ProductController
+</pre>
+
 		<p>
 			HomePageController is responsible for dynamic elements of the home page and ProductController is responsible for dynamic products in product pages.
 			<br><br>
 		</p>
 		<h2>Here are the functions in HomePageController</h2>
-		<div class="single-post-code-block">
-			<p>index()</p>
-		</div>
+
+<pre class="code-block">
+index()
+</pre>
+
 		<p>
 			<b>index()</b>: this function will return home page of the site along with 3 latest products. 
 		</p> <br>
@@ -198,10 +212,12 @@
 			I could have done this in ProductController since HomePageController has only one function currently. But I would like it to be separate because if I want to create other functions in future for home page, they will be organized. 
 		</p>
 		<h2>Here are the functions in ProductController</h2>
-		<div class="single-post-code-block">
-			<p>index()</p>
-			<p>show($slug)</p>
-		</div>
+
+<pre class="code-block">
+index()
+show($slug)
+</pre>
+
 		<p>
 			<b>index(): </b>This function will check if there are any specific category and sort request from user. If so it will return products from requested category and sort by requested value. Else it will return categories and products with categories with pagination.
 		</p> <br>
@@ -225,21 +241,27 @@
 		<p>
 			At current stage, users can view individual product or all products. So now to make shopping cart function works, I install laravel shopping cart package with composer
 		</p>
-		<div class="single-post-code-block">
-			<p>composer require bumbummen99/shoppingcart</p>
-		</div>
+
+<pre class="code-block">
+composer require bumbummen99/shoppingcart
+</pre>
+
 		<p>and created cart controller</p>	
-		<div class="single-post-code-block">
-			<p>php artisan make:controller CartController</p>
-		</div>
+
+<pre class="code-block">
+php artisan make:controller CartController
+</pre>
+
 		<h2>Here are the functions in cart controller</h2>
-		<div class="single-post-code-block">
-			<p>index()</p>
-			<p>store(Request $request)</p>
-			<p>destory (Request $request, $id)</p>
-			<p>empty()</p>
-			<p>update(Request $request, $id)</p>
-		</div>
+
+<pre class="code-block">
+index()
+store(Request $request)
+destory (Request $request, $id)
+empty()
+update(Request $request, $id)
+</pre>
+
 		<p>
 			<b>index(): </b>This function will return cart view with related products.
 		</p> <br>
@@ -270,9 +292,11 @@
 		<p>
 			In order to calculate and display total, subtotal and tax, I ran the following command
 		</p>
-		<div class="single-post-code-block">
-			<p>php artisan vendor:publish <br> --provider="Gloudemans\Shoppingcart\ShoppingcartServiceProvider" <br>--tag="config"</p>
-		</div>
+
+<pre class="code-block">
+php artisan vendor:publish --provider="Gloudemans\Shoppingcart\ShoppingcartServiceProvider" --tag="config"
+</pre>
+
 		<p>
 			This will create cart.php config file. In cart.php, I adjusted tax rate and display format of cost.
 		</p> <br>
@@ -284,20 +308,26 @@
 		<p>
 			To add checkout functionality using stripe, I installed stripe laravel package with composer.
 		</p>
-		<div class="single-post-code-block">
-			<p>composer require cartalyst/stripe-laravel</p>
-		</div>
+
+<pre class="code-block">
+composer require cartalyst/stripe-laravel
+</pre>
+
 		<p>
 			After that I created a checkout controller and confirmation controller (to return a thank you view if ordering is successful).
 		</p>
-		<div class="single-post-code-block">
-			<p>php artisan make:controller CheckoutController</p>
-			<p>php artisan make:controller ConfirmationController</p>
-		</div>
+
+<pre class="code-block">
+php artisan make:controller CheckoutController
+php artisan make:controller ConfirmationController
+</pre>
+
 		<h2>Here are the functions in confirmation controller</h2>
-		<div class="single-post-code-block">
-			<p>index()</p>
-		</div>
+
+<pre class="code-block">
+index()
+</pre>
+
 		<p>
 			<b>index(): </b>This function will check if there is any order confirmation message in session. If so return thankyou view. Else redirect to home page.
 		</p>
@@ -305,14 +335,18 @@
 		<p>
 			CheckoutRequest is create using this command in order to validate checkout form before submit.
 		</p>
-		<div class="single-post-code-block">
-			<p>php artisan make:request CheckoutRequest</p>
-		</div>
+
+<pre class="code-block">
+php artisan make:request CheckoutRequest
+</pre>
+
 		<h2>Here are functions in checkout controller</h2>
-		<div class="single-post-code-block">
-			<p>index()</p>
-			<p>store(CheckoutRequest $request)</p>
-		</div>
+
+<pre class="code-block">
+index()
+store(CheckoutRequest $request)
+</pre>
+
 		<p>
 			<b>index(): </b> This function will return checkout view.
 		</p> <br>
