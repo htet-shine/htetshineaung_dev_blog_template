@@ -107,7 +107,7 @@ a.link-custom-wld:hover {
 	display: inline-block;
 	margin:0;
 	font-size: 1.8rem;
-	font-weight: 400;
+	font-weight: 600;
 	border-bottom: 1px solid;
 	padding-bottom: .5rem;
 }
@@ -852,7 +852,7 @@ footer {
 /*-------------Posts Start-------------*/
 /*Most of the styling for posts is already done in home page*/
 .posts-section {
-	padding: 2rem 1rem 2rem 1rem;
+	padding: 2rem 0;
 }
 .home-section-heading.for-posts {
 	text-align: left;
