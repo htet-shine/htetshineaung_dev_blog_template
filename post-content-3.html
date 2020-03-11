@@ -41,13 +41,13 @@
 	<div class="post-content-section" id="sec1">
 		<h2>Introduction</h2>
 		<p>
-			Welcome to my website. <br>
+			Welcome to my website. <br />
 			This is one of the first php projects I've created during my time studying web development. I wanted to create an online store with cash on delivery system. This project includes, browsing categories, products, shopping cart and checkout functionalities for the frontend and basic admin dashboard for the backend.
-			<br><br>
+			<br /><br />
 			I've spent hours upon hours searching for things that I wanted to do that I didn't learn in classes (not in great details anyway). Those includes ajax calls, responsive design, single file for php scripts, etc.
-			<br><br>
+			<br /><br />
 			I relied on jquery in this project for my ajax calls, some minor dom manipulations, datatables and popovers. Then I've learned that jquery is going out for better js frameworks.
-			<br><br>
+			<br /><br />
 			Anyway, it was a good learning experience. Lets see the scope in next section.
 		</p>
 	</div>
@@ -62,7 +62,7 @@
 					<li>order products with cash on delivery payment method</li>
 				</ul>														
 			</li>
-			<br>
+			<br />
 			<li><b>Admins</b> will be able to
 				<ul class="bullet-list non-toc">
 					<li>see overview of data</li>
@@ -85,455 +85,270 @@
 
 			<!-- <img src="http://localhost/wordpress/htetshineaung_dev_blog/wp-content/uploads/2020/02/simple_laravel_blog2_db_1.jpg" alt="" width="650" height="auto" class="single-post-image alignnone size-full wp-image-228" /> -->
 
-			<p>Database</p>
+			<p>Image: Database</p>
 		</div>
 		<p>
-			Database currently has 3 tables and a few other default ones created by laravel and shopping cart package. A category can have many products, a product can have many categories. So a join table "category_product" is created for the purpose of storing the relationships between products and categories. "product_id" and "category_id" are foreign keys.
+			Database has seven tables. <br /> 
+			As you can see in the image, a category, subcategory and brand can have many products but a product can have only one category. <br />
+			A category can have many subcategories but a subcategory can have only one category. <br />
+			An order can have many products, a product can have many orders. So, a join table "order_product" is created that store the IDs of orders and products. <br /> 	
+			An order can only have one delivery location but a delivery location can have many orders. <br />
+			Next, to the implementation.
 		</p>
 	</div>
 
 	<div class="post-content-section" id="sec4">
 		<h2>Implementation</h2>
-		<p>
-			This section will include brief explanation of my development process. I'm not going to explain line by line as it will make this blog post way too long for anyone's attention span.
-		</p>
-		<h3>Laravel Installation</h3>
-		<p>
-			I do not like installing laravel globally because I like to contain everything in a project folder and choose the versions I want. So, "cd" into a folder and run the following command.
-		</p>
-
-<pre class="code-block">
-composer create-project --prefer-dist laravel/laravel [folder name]
-</pre>
-
-		<h3>View Files Structure</h3>
-		<p>
-			Now I've already created a html template for this project which you can check out in my <a href="#" class="link-custom-tld">github repo</a>. I used github pages in order to make sure the responsive side of things look good on mobile devices.
-			HTML template on its own would not go into laravel blade. So, I converted everything to suit laravel blade template and ran this command to customize pagination styling.
-		</p>
-
-<pre class="code-block">
-php artisan vendor:publish --tag=laravel-pagination
-</pre>
-
-		<p>
-			This command created the vendor/pagination folder in views folder. It include default paginations (bootstrap 4). I put my custom pagination file in that folder. So whenever I need to use pagination, I call the laravel pagination function with my custom file as a parameter.
-		</p>
-		<br>
-		<ul class="bullet-list non-toc">
-			<li>
-				layouts
-				<ul class="bullet-list non-toc">
-					<li><b>shop.blade.php</b></li>
-					<li><b>shopfullscreen.blade.php</b></li>
-				</ul>	
-			</li>
-			<li>
-				partials
-				<ul class="bullet-list non-toc">
-					<li><b>breadcrumb.blade.php</b></li>
-					<li><b>messages.blade.php</b></li>
-					<li><b>related.blade.php</b></li>
-				</ul>
-			</li>
-			<li>
-				vendor
-				<ul class="bullet-list non-toc">
-					<li>
-						pagination
-						<ul class="bullet-list non-toc">
-							<li><b>custom-pagination.blade.php</b></li>
-						</ul>
-					</li>
-				</ul>
-			</li>
-			<li><b>about.blade.php</b></li>
-			<li><b>cart.blade.php</b></li>
-			<li><b>checkout.blade.php</b></li>
-			<li><b>contact.blade.php</b></li>
-			<li><b>index.blade.php</b></li>
-			<li><b>login.blade.php</b></li>
-			<li><b>product.blade.php</b></li>
-			<li><b>products.blade.php</b></li>
-			<li><b>register.blade.php</b></li>
-			<li><b>thankyou.blade.php</b></li>
-			<li><b>welcome.blade.php</b></li>
-		</ul>
-		<br>
-		<p>
-			I added routes for all pages and urls to according navigation links in my header which is located in layouts folder. That way I can test all the links are working and directing to correct page.
-		</p>
-		<h3>Products & Home Page</h3>
-		<p>
-			I wanted to be able to show all the categories and products. So first I created a category model, migration and seeder by using this command
-		</p>
-
-<pre class="code-block">
-php artisan make:model Product -m
-php artisan make:seeder ProductsTableSeeder
-php artisan make:model Category -m
-php artisan make:seeder CategoriesTableSeeder
-</pre>
-
-		<p>
-			I also wanted a product to have multiple categories and obviously a category will have multiple products. The relationship between products and categories table became many to many. So I created a join table which includes product id and category id as foreign keys. Here is the commnad to create join table.
-		</p>
-
-<pre class="code-block">
-php artisan make:migration create_category_product_table --create=category_product
-</pre>
-
-		<p>
-			The relationship between two models, product and category, is declared in both models.
-		</p> <br>
-		<ul class="bullet-list non-toc">
-			<li>Product belongs to many Category.</li>
-			<li>Category belongs to many Product.</li>
-		</ul> <br>
-		<p>
-			By doing this, I can display products with multiple categories and categories with multiple products.
-		</p>
-		<p>
-			After that, I added all the attributes in products and categories migrations and create sample data array in seeder file. Then created database table and insert data by using this command.
-		</p>
-
-<pre class="code-block">
-php artisan migrate –seed
-</pre>
-
-		<p>Then I created HomePageController and ProductController</p>
-
-<pre class="code-block">
-php artisan make:controller ProductController
-</pre>
-
-		<p>
-			HomePageController is responsible for dynamic elements of the home page and ProductController is responsible for dynamic products in product pages.
-			<br><br>
-		</p>
-		<h3>Here are the functions in HomePageController</h3>
-
-<pre class="code-block">
-index()
-</pre>
-
-		<p>
-			<b>index()</b>: this function will return home page of the site along with 3 latest products. 
-		</p> <br>
-		<p><b>index()</b> will output data to <b>index.blade.php</b></p>
-		<br>
-		<p>
-			I wanted to add currency sign in front of the price so I’ve created a function in Product model. That way I can use this function anywhere Product class is used to return products. <br> <br>
-			I could have done this in ProductController since HomePageController has only one function currently. But I would like it to be separate because if I want to create other functions in future for home page, they will be organized. 
-		</p>
-		<h3>Here are the functions in ProductController</h3>
-
-<pre class="code-block">
-index()
-show($slug)
-</pre>
-
-		<p>
-			<b>index(): </b>This function will check if there are any specific category and sort request from user. If so it will return products from requested category and sort by requested value. Else it will return categories and products with categories with pagination.
-		</p> <br>
-		<p>
-			Now I wanted to have a section that show related products in multiple pages. So instead of repeating a code over and over. I’ve created a scope function in <b>Product model</b>. <br>
-			<b>scoperelatedProducts($query): </b>This function will return any query in random order and limit to 4.
-		</p> <br>
-		<p>back to ProductController</p>
-		<p>
-			<b>show($slug): </b>This function will take slug (unique) as a parameter and return the product of matching slug with its categories. It will also return related products except the product of matching slug in random order and limited to 4 products per query. This prevent related products section from displaying the same product user is currently look at.
-		</p> <br>
-		<p>
-			Routes are also updated to go to product controller instead of returning the pages directly which was done for testing the template in the beginning.
-		</p> <br>
-		<p>
-			index function will output data to view(<b>products.blade.php</b>). <br>
-			show function will output data to view(<b>product.blade.php</b>).
-		</p>
-		<br>
-		<h3>Shopping Cart</h3>
-		<p>
-			At current stage, users can view individual product or all products. So now to make shopping cart function works, I install laravel shopping cart package with composer
-		</p>
-
-<pre class="code-block">
-composer require bumbummen99/shoppingcart
-</pre>
-
-		<p>and created cart controller</p>	
-
-<pre class="code-block">
-php artisan make:controller CartController
-</pre>
-
-		<h3>Here are the functions in cart controller</h3>
-
-<pre class="code-block">
-index()
-store(Request $request)
-destory (Request $request, $id)
-empty()
-update(Request $request, $id)
-</pre>
-
-		<p>
-			<b>index(): </b>This function will return cart view with related products.
-		</p> <br>
-		<p>
-			To add products into the cart, the add to cart button was placed inside the form tag along with hidden input fields of product id, name and price. Form will submit to cart url using post method. Now back to store function of cart controller.
-		</p> <br>
-		<p>
-			<b>store(Request $request): </b>This function wll check if there is any duplicate item in the cart. If so return cart view with message. Else add product to the cart and return cart view with message.
-		</p> <br>
-		<p>
-			To delete products from the cart, remove button is placed inside form tag. Form will submit to cart url with id of the cart item with method filed delete.
-		</p> <br>
-		<p>
-			<b>destory (Request $request, $id): </b>This function will take id of the cart item and remove it from the cart then return cart view with message.
-		</p> <br>
-		<p>
-			<b>empty(): </b>This function will return cart view with no products in it.
-		</p> <br>
-		<p>
-			To update product quantity, I used axios package which was already included in laravel installation. Added javascript at the bottom of the cart.blade.php. In that javascript, I added event listener on change for select box and pass cart item id and selected quantity through axios patch request as shown in axios github documentation. Then refresh the page.
-		</p> <br>
-		<p>
-			<b>update(Request $request, $id): </b>This function will check if selected quantity is numeric and between 1 and 5. If not, return json response with fail message. Else update cart item quantity and return json response with success message. Note that this function will not return a view as it is already done in javascript.
-		</p> <br>
-		<p>
-			For quantity in the select box to stay at the selected value, I updated select options with php for loop and if item quantity is equal to the selected option, put selected attribute in that option.
-		</p> <br>
-		<p>
-			In order to calculate and display total, subtotal and tax, I ran the following command
-		</p>
-
-<pre class="code-block">
-php artisan vendor:publish --provider="Gloudemans\Shoppingcart\ShoppingcartServiceProvider" --tag="config"
-</pre>
-
-		<p>
-			This will create cart.php config file. In cart.php, I adjusted tax rate and display format of cost.
-		</p> <br>
-		<p>All the functions output to <b>cart.blade.php.</b></p> <br>
-		<p>
-			Routes are also updated and created to go to according cart controller functions.
-		</p> <br>
-		<h3>Checkout</h3>
-		<p>
-			To add checkout functionality using stripe, I installed stripe laravel package with composer.
-		</p>
-
-<pre class="code-block">
-composer require cartalyst/stripe-laravel
-</pre>
-
-		<p>
-			After that I created a checkout controller and confirmation controller (to return a thank you view if ordering is successful).
-		</p>
-
-<pre class="code-block">
-php artisan make:controller CheckoutController
-php artisan make:controller ConfirmationController
-</pre>
-
-		<h3>Here are the functions in confirmation controller</h3>
-
-<pre class="code-block">
-index()
-</pre>
-
-		<p>
-			<b>index(): </b>This function will check if there is any order confirmation message in session. If so return thankyou view. Else redirect to home page.
-		</p>
-		<br>
-		<p>
-			CheckoutRequest is create using this command in order to validate checkout form before submit.
-		</p>
-
-<pre class="code-block">
-php artisan make:request CheckoutRequest
-</pre>
-
-		<h3>Here are functions in checkout controller</h3>
-
-<pre class="code-block">
-index()
-store(CheckoutRequest $request)
-</pre>
-
-		<p>
-			<b>index(): </b> This function will return checkout view.
-		</p> <br>
-		<p>
-			In checkout.blade.php, I included stripe script, html, css and js as recommanded by stipe documentation. <br>
-			In the javascript, I customized the following few things. <br>
-			1. Remove postal code field. <br>
-			2. Get the text of city and state from select > options html tag. <br>
-			3. Create an array of data to be included when submiting form and pass the array in with the card. <br>
-			4. Disable submit button after clicking once. (To prevent multiple orders by accident) <br>
-			5. Enable submit button again after any error occurs. (To allow retry)
-		</p> <br>
-		<p>back to CheckoutController</p>
-		<p>
-			<b>store(CheckoutRequest $request): </b>This function will create a stripe charge and add metadata. If it is successful, return thankyou view with a message. If not, It will return back to checkout view with error message.
-		</p> <br>
-		<p>
-			Routes are udpated and store function output data to thankyou.blade.php or checkout.blade.php depending on the condition check.
-		</p>
+		
 	</div>
 
 	<div class="post-content-section" id="sec5">
 		
 		<h2>User Guide</h2>
 		<p>
-			This section will guide you step by step on how to use the application.
-			Now this app does not have admin dashboard yet, so user guide is very simple. For frontend user, most things are self explanatory. But anyawy, here is the user guide. <br> <br>
-			There are two ways to use the application. You can check out the live demo or install the app locally. To install locally, theres a step by step installation instructions on my github repo along with source code for this project. It is important to read installation instructions because there are a few things you need to tweak in order for checkout functionality to work.
-		</p> <br>	
-		
+			In this section, I will walk you through how to use the application. First, lets start with installation. 
+		</p> <br />
+		<h3>Installation</h3>
 		<p>
-			Whether you are viewing live demo or locally, this is a home page of the applicaion.
-		</p> <br>
+			If you already know how to set it up, download the project files and skip this part.<br />
+			<ul class="bullet-list non-toc">
+				<li>
+					You need to download the project files <a class="link-custom-tld" href="#">here</a>.
+				</li>
+				<li>
+					And xampp <a class="link-custom-tld" href="#">here</a>.
+				</li>
+				<br />
+				<li>Install xampp and run Apache and MySQL.</li>
+				<li>
+					Go to "localhost/phpmyadmin" url in your browser and create a new database.
+				</li>
+				<li>
+					Extract the download project zip file and indside "\SQL Setup\", you will find "DB_Backup.sql". Import that file into your newly created database.
+				</li>
+				<li>
+					After that, open "\admin\config\config.php" with notepad or any text editor and change the following
+<pre class="code-block">
+$dbuser = "[your user name]";
+$dbpass = "[your user password, default is blank]";
+$dbname = "[your database name you created earlier]";
+</pre>
+				</li>
+				<li>
+					Copy the entire project folder to "xampp\htdocs" folder
+				</li>
+				<li>
+					Open the browser and type in "localhost/[the project folder name]" and you will see the home page of the website.
+				</li>
+			</ul>
+		</p>
 
+		<br />
+		
+		<h3>Frontend user manual</h3>
+		<p>
+			 Frontend users should not require a manual to be able to use a website. The site UI should be intuitive enough for that. Especially for common sites like e-commerce, if you can use one, you can use others. <br />
+			 But without assuming user expertise, I will show you how to use the website. 
+		</p>
+		<br />
+
+		<h3>Home Page</h3>
 		<div class="single-post-image-container">
-			
-			<img class="single-post-image" src="images/ictcentral/ictcentral_img1.png" alt="">
-
-			<p>Image 1: Home Screen</p>
+			<img src="images/php_online_bag_store/php_online_bag_store_img1.jpg" alt="" class="single-post-image">
+			<p>Image 1: Home Page</p>
 		</div>
-		
-		<p>
-			As you can see, home page consists of image slider with links and featured products. You can click on any product on featured section and it will go to that product page with full details. Not much on home page. Now Lets see how to browse products. Click on “products” in the header nav menu to go to products page.
-		</p> <br>
-		
 		<div class="single-post-image-container">
-			
-			<img class="single-post-image" src="images/ictcentral/ictcentral_img2.png" alt="">
-
-			<p>Image 1: Products Page</p>
+			<img src="images/php_online_bag_store/php_online_bag_store_img11.jpg" alt="" class="single-post-image">
+			<p>Image 2: Home Page</p>
 		</div>
-
 		<p>
-			On the left side of the products page, theres is a fliters section which include categories and brands. On the right side, thre are products. Defalt view is all products ordered by created date ascending. You can also click on any category and it will show all the products from that specific category.
-		</p> <br>
-
+			As you can see the image, home page is composed of top navigation bar, slider, featured brands, latest arrivals, services and footer. <br />
+			You can click on brand icons to see the products of those brands and click on products to see products in details. 
+		</p>
+		
+		<h3>Products Page</h3>
 		<div class="single-post-image-container">
-			
-			<img class="single-post-image" src="images/ictcentral/ictcentral_img4.png" alt="">
-
-			<p>Image 1: Products from specific category sorted by price</p>
+			<img src="images/php_online_bag_store/php_online_bag_store_img3.jpg" alt="" class="single-post-image">
+			<p>Image 2: Products Page</p>
 		</div>
-
 		<p>
-			You can sort products as shown above. When you click on any product image or name, you will be directed to individual product page.
-		</p> <br>
-
+			You can click on each product to know more about the product or you can add it to cart directly from this page. There are 4 products in one page.  
+		</p>
+		<br />
 		<div class="single-post-image-container">
-			
-			<img class="single-post-image" src="images/ictcentral/ictcentral_img5.png" alt="">
-
-			<p>Image 1: Individual Product Page</p>
+			<img src="images/php_online_bag_store/php_online_bag_store_img4.jpg" alt="" class="single-post-image">
+			<p>Image 3: Filters</p>
 		</div>
-		
 		<p>
-			Individual product page is divided in to 3 section, top, middle and bottom. Top section is divided by 2 section, left and right. <br>
-			On the top left, you will find product image and on the right, you will find name, price, category, details ,description and of cource add to cart button. <br>
-			In the middle section, you will find gallery for more product images and specifications for more specific details. <br> <br>
+			You can also choose a category using the filters displayed on the left side. 
+		</p>
 
-			In the bottom section, you will find related products.
-
-		</p> <br>
-
+		<h3>Single Product Page</h3>
 		<div class="single-post-image-container">
-			
-			<img class="single-post-image" src="images/ictcentral/ictcentral_img7.png" alt="">
-
-			<p>Image 5: Related Products</p>
-		</div>		
-		
+			<img src="images/php_online_bag_store/php_online_bag_store_img2.jpg" alt="" class="single-post-image">
+			<p>Image 4: Single Product Page</p>
+		</div>
 		<p>
-			Now for adding products to the shopping cart, you can do this from Products page (image 2) directly or from individual product page (image 4). Once you clicked on add to cart button, you will be directed to shopping cart page.
-		</p> <br>
-		
-		<div class="single-post-image-container">
-			
-			<img class="single-post-image" src="images/ictcentral/ictcentral_img8.png" alt="">
+			As you can see, this page contain detailed description of what the product is, along with 3 images. You can choose quantity and add product to cart from here as well.
+		</p>
 
+		<h3>Shopping Cart Page</h3>
+		<div class="single-post-image-container">
+			<img src="images/php_online_bag_store/php_online_bag_store_img5.jpg" alt="" class="single-post-image">
+			<p>Image 5: Top Navigation Bar</p>
+		</div>
+		<p>
+			Once you click on add to cart button, the purple counter at the top right of nav bar will change to the number of products you've put in into the cart. When you click on that, you will be directed to shopping cart page.
+		</p>
+		<div class="single-post-image-container">
+			<img src="images/php_online_bag_store/php_online_bag_store_img6.jpg" alt="" class="single-post-image">
 			<p>Image 6: Shopping Cart Page</p>
-		</div>	
-
-		<p>
-			In the shopping cart page, you will see a message popping up to notify you that the product you selected has been added to the cart. Shopping cart is divided into 2 section, top and bottom. <br>
-			On the top left, you will find how many products in the shopping cart, the product(s) you’ve put in with name, details, quantity, price and button to remove the product from shopping cart. You can also remove all products from the cart by clicking empty cart button. And finally you will be able to add coupon code for discounts (Not yet implemented). <br>
-			On the top right side, you will find subtotal, tax and total of your order. You can continue shopping or go to checkout page by clicking checkout button. <br>
-			On the bottom section, you can find related products <br> <br>
-			You can change quantity of the product you want to order as shown in the image below.
-		</p> <br>
-
-		<div class="single-post-image-container">
-			
-			<img class="single-post-image" src="images/ictcentral/ictcentral_img9.png" alt="">
-
-			<p>Image 7: Change Product Quantity</p>
-		</div>	
-		
-		<p>
-			After changing quantity, you will see a pop up message, updated total cart item quantity, updated price for individual product, subtotal and total as shown in the image below.
-		</p> <br>
-
-		<div class="single-post-image-container">
-			
-			<img class="single-post-image" src="images/ictcentral/ictcentral_img11.png" alt="">
-
-			<p>Image 8: After updating quantity</p>
-		</div>	
-
-		<p>
-			Here is the checkout page.
-		</p> <br>
-
-		<div class="single-post-image-container">
-			
-			<img class="single-post-image" src="images/ictcentral/ictcentral_img13.png" alt="">
-
-			<p>Image 9: Checkout Page</p>
-		</div>	
-
-		<p>
-			It is divided into 2 section, left and right. <br>
-			On the left, you will find input fields to enter your personal info and payment information according to the labels. <br>
-			On the right, you will see your order summary. <br><br>
-			Once you click on confirm checkout button, you will see the page below and your order is complete.
-		</p> <br>
-
-		<div class="single-post-image-container">
-			
-			<img class="single-post-image" src="images/ictcentral/ictcentral_img14.png" alt="">
-
-			<p>Image 10: Thank You Page</p>
 		</div>
-
 		<p>
-			Your shopping cart will be empty as well, you can tell its empty by look at 0 on nav menu or click on cart in the menu and you will see the page below.
-		</p> <br>
-		
+			You can see the product(s), unit price, subtotal and total in this page. You can also empty the cart, remove products from the cart if you clicked on add to cart by accident.
+		</p>
+		<br />
 		<div class="single-post-image-container">
-			
-			<img class="single-post-image" src="images/ictcentral/ictcentral_img15.png" alt="">
+			<img src="images/php_online_bag_store/php_online_bag_store_img7.jpg" alt="" class="single-post-image">
+			<p>Image 7: Delivery</p>
+		</div>
+		<p>
+			After you selected your location, the site will show you the cost of delivery. Click proseed to checkout to place your order.
+		</p>
 
-			<p>Image 10: Empty Cart Page</p>
-		</div>	
-
+		<h3>Checkout</h3>
+		<div class="single-post-image-container">
+			<img src="images/php_online_bag_store/php_online_bag_store_img9.jpg" alt="" class="single-post-image">
+			<p>Image 8: Checkout Page</p>
+		</div>
+		<p>
+			Fill in your information such as name and phone number accordingly and click on submit order. 
+		</p>
+		<br />
+		<div class="single-post-image-container">
+			<img src="images/php_online_bag_store/php_online_bag_store_img10.jpg" alt="" class="single-post-image">
+			<p>Image 9: Order Complete</p>
+		</div>
+		<p>
+			You will see this message and your order is now complete. You will receive a call to verify the order.
+		</p>
+		<br />
+		<h3>Backend user manual</h3>
+		<p>
+			I will quickly go over the admin panel features because a lot of it is the same, viewing, adding, editing and deleting things. To go to admin panel, type in the follwing in your browser url<br />
+			"localhost/[the project folder name]/admin"
+		</p> 
+		<br />
+		<h3>Admin Panel Home</h3>
+		<div class="single-post-image-container">
+			<img src="images/php_online_bag_store/php_online_bag_store_img12.jpg" alt="" class="single-post-image">
+			<p>Image 10: Admin Login</p>
+		</div>
+		<p>
+			Default username is "admin" and password is "123". Click login and you will be directed to admin dashboard.
+		</p>
+		<br />
+		<div class="single-post-image-container">
+			<img src="images/php_online_bag_store/php_online_bag_store_img13.jpg" alt="" class="single-post-image">
+			<p>Image 11: Admin Home Page</p>
+		</div>
+		<p>
+			You can see overview of orders, products and everything in this page. You can use top navigation bar to navigate through the admin panel.
+		</p>
+		<br />
+		<h3>Viewing, Adding, Editing and Deleting Products</h3>
+		<p>
+			You can do all of the things mentioned above from this page (Image 12).
+		</p>	
+		<br />
+		<div class="single-post-image-container">
+			<img src="images/php_online_bag_store/php_online_bag_store_img14.jpg" alt="" class="single-post-image">
+			<p>Image 12: Managing Products</p>
+		</div>
+		<p>
+			You can see all the products currently on the website here. <br />
+			You can click on view to see a more details about the products. (Image 13 below) <br />
+			Click edit to edit products and delete to delete it. (Image 14 and 15 below)
+		</p>
+		<br />
+		<div class="single-post-image-container">
+			<img src="images/php_online_bag_store/php_online_bag_store_img15.jpg" alt="" class="single-post-image">
+			<p>Image 13: View Products</p>
+		</div>
+		<div class="single-post-image-container">
+			<img src="images/php_online_bag_store/php_online_bag_store_img16.jpg" alt="" class="single-post-image">
+			<p>Image 14: Edit or Add Products</p>
+		</div>
+		<div class="single-post-image-container">
+			<img src="images/php_online_bag_store/php_online_bag_store_img17.jpg" alt="" class="single-post-image">
+			<p>Image 15: Delete Products</p>
+		</div>
+		<p>
+			You can add products in the same way you edit but without clicking on edit button. Click on "Add & Edit Product", it will expand show input fields. When you select images it will show you preview before uploading (image 16 below).
+		</p>
+		<div class="single-post-image-container">
+			<img src="images/php_online_bag_store/php_online_bag_store_img25.jpg" alt="" class="single-post-image">
+			<p>Image 16: Managing Products</p>
+		</div>
+<br />
+		<h3>Viewing, Adding, Editing and Deleting Brands</h3>
+		<p>
+			Pretty much the same principle as products.
+		</p>
+		<br />
+		<div class="single-post-image-container">
+			<img src="images/php_online_bag_store/php_online_bag_store_img18.jpg" alt="" class="single-post-image">
+			<p>Image 17: Viewing Brands</p>
+		</div>
+		<div class="single-post-image-container">
+			<img src="images/php_online_bag_store/php_online_bag_store_img19.jpg" alt="" class="single-post-image">
+			<p>Image 18: Editing Brands</p>
+		</div>
+		<p>
+			I will not show categories, sub categories and delivery as they are exactly the same as managing brands. One thing to note is A category must be present before you can add a sub category. Now onto the order page. 
+		</p>
+	<br />
+		<h3>Managing Orders</h3>
+		<p>
+			This is where you can change status of orders and update stock.
+		</p>
+		<br />
+		<div class="single-post-image-container">
+			<img src="images/php_online_bag_store/php_online_bag_store_img23.jpg" alt="" class="single-post-image">
+			<p>Image 19: Managing Orders</p>
+		</div>
+		<p>
+			Each order is displayed with its id number and separated into 3 columns. Info of person who ordered, product(s) ordered, total cost and status of the order. Once order is delivered to the customer, you can update the stock and mark the order as delivered.
+		</p>
+		<br />
+		<div class="single-post-image-container">
+			<img src="images/php_online_bag_store/php_online_bag_store_img24.jpg" alt="" class="single-post-image">
+			<p>Image 20: Order Delivered</p>
+		</div>
+		<p>
+			Now the stock is updated and order is delivered.
+		</p>
+		<br />
 	</div>
 
 	<div class="post-content-section" id="sec6">
 
 		<h2>Conclusion</h2>
 		<p>
-			This project is not finished so, I can't write too much in the conclusion. But up to this point, I learned a lot more things I can do with laravel. In this project, I used <b>$request</b> as opposed to <b>request()</b>, <b>url()</b> in place of <b>route()</b> but sometimes the opposite. The reason being that I want to look back to this project as sort of a cheat sheet, so I included a lot similar functions of laravel that basically perform the same task but written in a slightly different way. And I believe it is good practice for learning as well. <br> <br>
-
-			Thank you for reading through all of this. I will be updating this project as continue implementing more functionalities.
+			First of all, is this project practical? No, its not. One of the biggest reason for that is security. I did not know how to use PHP PDO at the time of developing this project so SQL Injections attacks are welcome. And so many other security flaws. <br />
+			Secondly, this kind of coding php is incredibly difficult and time consuming to read and debug for anyone. <br /><br />
+			But what this project did give me is the learning experience and knowledge about 
+			<ul class="bullet-list non-toc">
+				<li>php</li>
+				<li>sql queries</li>
+				<li>jquery (dom manipulation, ajax calls, form validations, etc)</li>
+				<li>responsive design</li>
+				<li>many other ui/ux elements</li>
+			</ul>
+		</p>
+		<br />
+		<p>
+			Thank you for reading. If you have time check out my other <a class="link-custom-tld" href="http://localhost/wordpress/htetshineaung_dev_blog/posts/">posts</a> including projects with laravel.
 		</p>
 
 	</div>	
