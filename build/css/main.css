@@ -1,11 +1,12 @@
 /* Poppins Font */
 @import url('https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700&display=swap');
-/* Fira Code Font */
+
 @import url('https://fonts.googleapis.com/css?family=Fira+Code:400,500,600&display=swap');
 
 :root {
 	--teal: #3fb0ac;
 	--light-teal: #6DDCD8;
+	--lighter-teal: #E2F6F5;
 	--dark-teal: #173e43;
 	--light-yellow: #fae596;
 	--greenish-gray: #dddfd4;
@@ -35,6 +36,12 @@
 	--linkedin: #006192;
 	--twitter: #1DA1F2;
 	--facebook: #1778f2;
+}
+
+section.mapping > div {
+	display: flex;
+	justify-content: center;
+	align-items: center;
 }
 
 /*-------------Global Styles Start-------------*/
@@ -79,6 +86,9 @@ a.link-custom-tld:hover {
 	color: var(--dark-teal);
 	border-bottom: 1px solid rgba(23,62,67,1);
 }
+a.link-custom-tld::after {
+	content: ',';
+}
 a.link-custom-tld:last-child::after {
 	content: '';
 }
@@ -107,7 +117,7 @@ a.link-custom-wld:hover {
 	display: inline-block;
 	margin:0;
 	font-size: 1.8rem;
-	font-weight: 600;
+	font-weight: 400;
 	border-bottom: 1px solid;
 	padding-bottom: .5rem;
 }
@@ -145,7 +155,6 @@ a.link-custom-wld:hover {
 .link-btn-custom-tbg::before {
 	content: '';
 	position: absolute;
-	background: red;
 	width: 100%;
 	height: 100%;
 	top: 0;
@@ -159,6 +168,18 @@ a.link-custom-wld:hover {
 .link-btn-custom-tbg:hover::before {
 	opacity: 1;
 }
+.link-btn-custom-tbg:focus {
+	outline: none;
+}
+.link-btn-custom-tbg.empty {
+	cursor: default;
+	color: var(--light-gray);
+	background: var(--lighter-gray);
+}
+.link-btn-custom-tbg.empty::before {
+	content: '';
+	background: var(--lighter-gray);
+}
 .button-custom-tld-b {
 	border: none !important;
 	color: var(--bs-light) !important;
@@ -171,6 +192,30 @@ a.link-custom-wld:hover {
 	transition: .3s ease-out !important;
 }
 /*-------------Global Styles End-------------*/
+
+/*#####################################################################*/
+
+/*-------------Progress Bar Percent Start-------------*/
+.progress.single-post-progress {
+	width: 100%;
+	height: 1.4rem;
+	margin: .8rem 0 0 0;
+}
+.progress.single-post-progress > .progress-bar {
+	background: var(--light-blue);
+	animation: progressSlide 1s ease-in;
+}
+.progress-bar.ten { width: 10%; } .progress-bar.ten::before { content: 'Progress: 10%'; }
+.progress-bar.twenty { width: 20%; } .progress-bar.twenty::before { content: 'Progress: 20%'; }
+.progress-bar.thirty { width: 30%; } .progress-bar.thirty::before { content: 'Progress: 30%'; }
+.progress-bar.fourty { width: 40%; } .progress-bar.fourty::before { content: 'Progress: 40%'; }
+.progress-bar.fifty { width: 50%; } .progress-bar.fifty::before { content: 'Progress: 50%'; }
+.progress-bar.sixty { width: 60%; } .progress-bar.sixty::before { content: 'Progress: 60%'; }
+.progress-bar.seventy { width: 70%; } .progress-bar.seventy::before { content: 'Progress: 70%'; }
+.progress-bar.eighty { width: 80%; } .progress-bar.eighty::before { content: 'Progress: 80%'; }
+.progress-bar.ninety { width: 90%; } .progress-bar.ninety::before { content: 'Progress: 90%'; }
+.progress-bar.hundred { width: 100%; } .progress-bar.hundred::before { content: 'Progress: 100%'; }
+/*-------------Progress Bar Percent End-------------*/
 
 /*#####################################################################*/
 
@@ -419,7 +464,6 @@ main#main {
 	background: var(--bs-light);
 }
 
-
 /*#####################################################################*/
 
 /*-------------Hero Image Start-------------*/
@@ -490,7 +534,6 @@ main#main {
 		font-size: 1.4rem;
 	}
 }
-
 @keyframes slideUpOne {
 	0% {
 		opacity: 0;
@@ -716,7 +759,7 @@ main#main {
 	border-radius: 10px;
 	overflow: hidden;
 	/*box-shadow: 5px 5px 10px 0px rgba(0,0,0,0.1);*/
-	/*border: 1px solid rgba(63,176,172,.7);*/
+	border: 1px solid var(--lighter-gray);
 	transform: translateX(-27%);
 }
 .post-card-img img {
@@ -833,10 +876,10 @@ footer {
 	text-align: justify;
 }
 .footer-info p:last-child {
-	/*display: table;*/
+	/* display: table; */
 }
 .footer-info p > i {
-	/*vertical-align: middle;*/
+	/* vertical-align: middle; */
 	margin: 0 .5rem 0 0;
 	font-size: 22px;
 }
@@ -899,6 +942,13 @@ footer {
 .carousel-container {
 	border-bottom: 2px solid var(--lighter-gray);
 }
+ol.carousel-indicators.custom > li {
+	padding: .1rem;
+	background-color: rgba(23,62,67,0.5);
+}
+ol.carousel-indicators.custom > li.active {
+	background-color: rgba(23,62,67,0.8);
+}
 /*-------------Carousel End-------------*/
 /*-------------Posts Start-------------*/
 /*Most of the styling for posts is already done in home page*/
@@ -916,7 +966,6 @@ footer {
 .post-card-container.for-posts {
 	padding-left: 0;
 	padding-right: 0;
-
 }
 .filter-section {
 	display: flex;
@@ -974,7 +1023,7 @@ li.category-item {
 	text-align: justify;
 	text-justify: inter-word;
 }
-.pagination-container {
+/* .pagination-container { ------------Template pagi
 	display: flex;
 	justify-content: flex-end;
 }
@@ -1010,6 +1059,35 @@ li.pageitem-custom.active a.pagelink-custom {
 }
 a.pagelink-custom {
 	color: var(--teal);
+} */
+
+.pagi-custom {  /* -------------------Wordpress pagi */
+	display: flex;
+	justify-content: flex-end;
+}
+.pagi-custom > a.page-numbers, span.page-numbers {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin: 0 .2rem;
+	padding: .2rem .5rem;
+	border: 1px solid;
+	min-width: 40px;
+	min-height: 40px;
+	background: var(--white);
+	border: 1px solid var(--teal);
+	color: var(--teal);
+	border-radius: 10px;
+	transition: .2s ease-out;
+}
+.pagi-custom > a.page-numbers:hover {
+	background: var(--dark-teal);
+	border: 1px solid var(--dark-teal);
+	color: var(--bs-light);
+}
+.pagi-custom > span.page-numbers.current {
+	background: var(--teal);
+	color: var(--bs-light);
 }
 /*__________(_Posts Media Queries Start)__________*/
 @media screen and (max-width: 992px) {
@@ -1053,7 +1131,7 @@ a.pagelink-custom {
 	border: none;
 	font-weight: 500;
 }
-.single-post-heading-image {  /* new */
+.single-post-heading-image {  
 	border: 1px solid var(--lighter-gray);
 	border-radius: 10px;
 	overflow: hidden;
@@ -1095,17 +1173,6 @@ a.pagelink-custom {
 .single-post-action a:last-child {
 	margin-right: 0;
 }
-.progress.single-post-progress {
-	width: 100%;
-	height: 1.4rem;
-	margin: .8rem 0 0 0;
-}
-.progress.single-post-progress > .progress-bar {
-	width: 50%;
-	background: var(--light-blue);
-	animation: progressSlide 1s ease-in;
-}
-
 
 .single-post-content h1 {  /* Single Post Content */
 	font-size: 1.3rem;
@@ -1122,9 +1189,9 @@ a.pagelink-custom {
 }
 
 .single-post-content p {
-	line-height: 1.8rem;
 	text-align: justify;
 	text-justify: inter-word;
+	line-height: 1.8;
 }
 .post-content-section {
 	border-top: 1px solid var(--lighter-gray);
@@ -1151,16 +1218,6 @@ ul.bullet-list > li {
 ul.bullet-list.non-toc {
 	padding: 0 0 0 1.15rem;
 }
-.single-post-code-block {
-	background: var(--teal-gray);
-	padding: 1rem 1rem 1rem 2rem;
-	border-left: 4px solid var(--light-gray);
-	border-radius: 10px;
-	margin: 1rem 0;
-}
-.single-post-code-block > p {
-	font-family: Fira Code, monospace;
-}
 pre.code-block {
 	padding: 1rem;
 	background: var(--teal-gray);
@@ -1171,6 +1228,10 @@ pre.code-block {
 	margin: 1rem 0;
 	overflow-x: auto;
 }
+pre.code-block > code {
+	white-space: pre;
+}
+
 .latest-posts-container {
 	margin: 0 0 2rem 0;
 	padding: 0 0 1rem 0;
@@ -1312,16 +1373,22 @@ pre.code-block {
 	color: var(--light-gray);
 	font-size: .9rem;
 }
-.contact-form-custom input[type = text], textarea {
+.contact-form-custom input[type = "text"], input[type = "email"], textarea {
 	display: block;
 	width: 100%;
 	background: var(--white);
 	color: var(--gray);
-	padding: .3rem .6rem;
+	padding: .8rem 1rem;
 	border-radius: 10px;
 	border: 1px solid var(--lighter-gray);
 	-webkit-appearance: none;
 	box-shadow: none;
+}
+.contact-form-custom input[type = "text"]:focus, input[type = "email"]:focus, textarea:focus {
+	border: 1px solid var(--light-teal);
+	box-shadow: 0 0 10px 0 rgba(109,220,216,0.5);
+	outline: none;
+	transition: border .2s ease, box-shadow .2s ease;
 }
 .contact-form-custom i {
 	display: block;
@@ -1330,12 +1397,6 @@ pre.code-block {
 }
 .contact-form-custom i > span, label > span {
 	color: var(--teal);
-}
-.contact-form-custom input[type = text]:focus, textarea:focus {
-	border: 1px solid var(--light-teal);
-	box-shadow: 0 0 10px 0 rgba(109,220,216,0.5);
-	outline: none;
-	transition: border .2s ease, box-shadow .2s ease;
 }
 .contact-form-custom button.link-btn-custom-tbg {
 	width: 100%;
@@ -1436,6 +1497,11 @@ pre.code-block {
 .no-post-container h1 {
 	font-size: 1.3rem;
 }
+@media screen and (max-width: 991.98px) {
+	.no-post-container {
+		margin-bottom: 4rem;
+	}
+}
 /*-------------No Post End-------------*/
 
 /*-------------404 Start-------------*/
@@ -1456,5 +1522,3 @@ pre.code-block {
 	text-transform: uppercase;
 }
 /*-------------404 End-------------*/
-
-
